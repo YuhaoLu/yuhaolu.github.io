@@ -1,0 +1,40 @@
+{
+  "name": "yuhaolu.github.io.git",
+  "version": "1.0.0",
+  "description": "first",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://YuhaoLu@github.com/YuhaoLu/yuhaolu.github.io.git"
+  },
+  "author": "Yuhao Lu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuhaoLu/yuhaolu.github.io/issues"
+  },
+  "homepage": "https://github.com/YuhaoLu/yuhaolu.github.io#readme",
+  "dependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-eslint": "^5.0.0",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-jasmine-browser": "^4.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify-es": "^1.0.4",
+    "imagemin-pngquant": "^6.0.0",
+    "jasmine-core": "^3.2.1",
+    "puppeteer": "^1.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "eslint": "^5.7.0",
+    "eslint-config-google": "^0.11.0",
+    "gulp-autoprefixer": "^6.0.0"
+  }
+}
