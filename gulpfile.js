@@ -13,13 +13,14 @@ const imagemin = require('gulp-imagemin');
 const pngquant = require('imagemin-pngquant');
 
 // default task - realtime development
-gulp.task('default', ['copy-html', 'copy-images', 'styles', 'lint'],
+gulp.task('default', ['styles', 'lint'],
     function() {
       // if any .scss file got changed, invoke the 'styles' task
       gulp.watch('sass/**/*.scss', ['styles']);
       gulp.watch('js/**/*.js', ['lint']);
-      gulp.watch('index.html', ['copy-html']);
       gulp.watch('index.html').on('change', browserSync.reload);
+      gulp.watch('css/**/*.css').on('change', browserSync.reload);
+      gulp.watch('js/**/*.js').on('change', browserSync.reload);
 
       browserSync.init({
         server: './',
@@ -29,16 +30,22 @@ gulp.task('default', ['copy-html', 'copy-images', 'styles', 'lint'],
 
 // production task - delivery
 gulp.task('dist', [
-  'copy-html',
-  'copy-images',
   'styles',
   'lint',
-  'scripts-dist',
+  'copy-html',
+  'copy-css',
+  'copy-images',
+  'concat-js',
 ]);
 
 gulp.task('copy-html', function() {
-  gulp.src('./index.html')
-      .pipe(gulp.dest('./dist'));
+  gulp.src('index.html')
+      .pipe(gulp.dest('dist'));
+});
+
+gulp.task('copy-css', function() {
+  gulp.src('css/*')
+      .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('copy-images', function() {
@@ -50,7 +57,7 @@ gulp.task('copy-images', function() {
       .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('scripts-dist', function() {
+gulp.task('concat-js', function() {
   gulp.src('js/**/*.js')
       .pipe(sourcemaps.init())
       .pipe(babel())
@@ -68,7 +75,7 @@ gulp.task('styles', function() {
             browsers: ['last 2 versions'],
           })
       )
-      .pipe(gulp.dest('dist/css'))
+      .pipe(gulp.dest('css'))
       .pipe(browserSync.stream());
 });
 
