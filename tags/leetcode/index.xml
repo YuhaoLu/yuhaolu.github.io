@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Leetcode on Yuhao&#39;s Blog</title>
+    <link>http://localhost:1313/tags/leetcode/</link>
+    <description>Recent content in Leetcode on Yuhao&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 May 2024 11:27:22 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Array_n_strings</title>
+      <link>http://localhost:1313/posts/algo/array_n_strings/</link>
+      <pubDate>Sat, 11 May 2024 11:27:22 -0700</pubDate>
+      <guid>http://localhost:1313/posts/algo/array_n_strings/</guid>
+      <description>Ref: https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms&#xA;1. Arrays C++ require you to specify the size and data type of the array during initialization but also have support for lists (like std::vector in C++).&#xA;2. Strings Strings are implemented differently between languages. In Python and Java, they are immutable. In C++, they are mutable.&#xA;Why should we care about something being mutable or immutable? If you have a mutable array arr = [&amp;ldquo;a&amp;rdquo;, &amp;ldquo;b&amp;rdquo;, &amp;ldquo;c&amp;rdquo;] and an immutable string s = &amp;ldquo;abc&amp;rdquo;, but you want to instead represent &amp;ldquo;abd&amp;rdquo;, you can easily do arr[2] = &amp;ldquo;d&amp;rdquo;, but you cannot do s[2] = &amp;ldquo;d&amp;rdquo;.</description>
+    </item>
+  </channel>
+</rss>

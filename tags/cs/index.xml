@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Yuhao&#39;s Blog</title>
-    <link>https://yuhaolu.github.io/posts/</link>
-    <description>Recent content in Posts on Yuhao&#39;s Blog</description>
+    <title>CS on Yuhao&#39;s Blog</title>
+    <link>https://yuhaolu.github.io/tags/cs/</link>
+    <description>Recent content in CS on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Jul 2024 14:45:37 -0700</lastBuildDate>
-    <atom:link href="https://yuhaolu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>First Post</title>
-      <link>https://yuhaolu.github.io/posts/first_post/</link>
-      <pubDate>Sun, 07 Jul 2024 14:45:37 -0700</pubDate>
-      <guid>https://yuhaolu.github.io/posts/first_post/</guid>
-      <description>This is a test markdown blog post.&#xA;print(&amp;#34;Hello World!&amp;#34;) </description>
-    </item>
+    <lastBuildDate>Sat, 29 Jun 2024 15:19:36 -0700</lastBuildDate>
+    <atom:link href="https://yuhaolu.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning</title>
       <link>https://yuhaolu.github.io/posts/cs/ml_stanford/</link>
