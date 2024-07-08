@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jun 2024 15:19:36 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2024 16:09:21 -0700</lastBuildDate>
     <atom:link href="https://yuhaolu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RDMA Programming</title>
+      <link>https://yuhaolu.github.io/posts/cs/rdma_nvidia/</link>
+      <pubDate>Fri, 05 Jul 2024 16:09:21 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/cs/rdma_nvidia/</guid>
+      <description>Ref: https://www.coursera.org/learn/the-fundamentals-of-rdma-programming&#xA;1. RDMA Bypassing OS Traditionally, most socket application uses the socket API, for example, connect, accept, send and receive. All our functions are used to pass data from one point to another.&#xA;Client connect() send() recv() Server accept() send() recv() RDMA programming is an alternative to socket programming. It gives you better latency and better utilization of your hardware if you have network interface cards that can work with it.</description>
+    </item>
     <item>
       <title>Machine Learning</title>
       <link>https://yuhaolu.github.io/posts/cs/ml_stanford/</link>

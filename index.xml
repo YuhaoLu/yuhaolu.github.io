@@ -6,9 +6,387 @@
     <description>Recent content on Yuhao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Jun 2024 15:19:36 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 05 Jul 2024 16:09:21 -0700</lastBuildDate>
     
         <atom:link href="https://yuhaolu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>RDMA Programming</title>
+        <link>https://yuhaolu.github.io/posts/cs/rdma_nvidia/</link>
+        <pubDate>Fri, 05 Jul 2024 16:09:21 -0700</pubDate>
+        
+        <guid>https://yuhaolu.github.io/posts/cs/rdma_nvidia/</guid>
+        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/posts/cs/rdma_nvidia/ -&lt;p&gt;Ref: &lt;a href=&#34;https://www.coursera.org/learn/the-fundamentals-of-rdma-programming&#34;&gt;https://www.coursera.org/learn/the-fundamentals-of-rdma-programming&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;1-rdma&#34;&gt;1. RDMA&lt;/h1&gt;
+&lt;h2 id=&#34;bypassing-os&#34;&gt;Bypassing OS&lt;/h2&gt;
+&lt;p&gt;Traditionally, most socket application uses the socket API, for example, connect, accept, send and receive. All our functions are used to pass data from one point to another.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Client
+&lt;ul&gt;
+&lt;li&gt;connect()&lt;/li&gt;
+&lt;li&gt;send()&lt;/li&gt;
+&lt;li&gt;recv()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Server
+&lt;ul&gt;
+&lt;li&gt;accept()&lt;/li&gt;
+&lt;li&gt;send()&lt;/li&gt;
+&lt;li&gt;recv()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;RDMA programming is an alternative to socket programming. It gives you better latency and better utilization of your hardware if you have network interface cards that can work with it.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Transport Offload&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Reliable Connection(RC)&lt;/li&gt;
+&lt;li&gt;Unreliable Datagram(UD)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Transport Layer&lt;/th&gt;
+&lt;th&gt;RC is like TCP&lt;/th&gt;
+&lt;th&gt;UD is like UDP&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Reliability&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Connectivity&lt;/td&gt;
+&lt;td&gt;Yes&lt;/td&gt;
+&lt;td&gt;No&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Message/Stream&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel Bypass&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;      Socket Programs            RDMA Program
+      Application
+User  Socket Libarary            RDMA Library
+----------------------          -----------------
+OS    Socket TCP/IP
+      Device Driver
+----------------------
+      NIC Hardware               NIC Hardware
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/RDMA_Programming/RDMA_zero_copy.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;memory-zero-copy&#34;&gt;Memory Zero-copy&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/RDMA_Programming/transfer_flight.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Buffer Copy
+&lt;ul&gt;
+&lt;li&gt;two sided&lt;/li&gt;
+&lt;li&gt;send&lt;/li&gt;
+&lt;li&gt;Temporary buffers&lt;/li&gt;
+&lt;li&gt;Additional copies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Zero Copy
+&lt;ul&gt;
+&lt;li&gt;one sided&lt;/li&gt;
+&lt;li&gt;RDMA read/write&lt;/li&gt;
+&lt;li&gt;Transfer directly&lt;/li&gt;
+&lt;li&gt;No additional copies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;2-rdma-verbs&#34;&gt;2. RDMA Verbs&lt;/h1&gt;
+&lt;p&gt;Verbs {API}&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Control Path&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create&lt;/li&gt;
+&lt;li&gt;Modify&lt;/li&gt;
+&lt;li&gt;Destroy&lt;/li&gt;
+&lt;li&gt;Query&lt;/li&gt;
+&lt;li&gt;Work with Events&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Data Path&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Post Send&lt;/li&gt;
+&lt;li&gt;Post Receive&lt;/li&gt;
+&lt;li&gt;Poll CQ&lt;/li&gt;
+&lt;li&gt;Request for completion event&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Libibverbs - User Space Library&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Send/Receive&lt;/li&gt;
+&lt;li&gt;QP Create Destroy&lt;/li&gt;
+&lt;li&gt;Init Query Teardown&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Kernel Verbs&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Verbs&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Request&lt;/li&gt;
+&lt;li&gt;Completions&lt;/li&gt;
+&lt;li&gt;Queues&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/RDMA_Programming/RDMA_datapath_flow.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;p&gt;RDMA verbs typically divide into&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Data Path, which governs how data is sent and/or received&lt;/li&gt;
+&lt;li&gt;Control Path, which governs how resources are created, modified or destroyed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rdma---memory-registration&#34;&gt;RDMA - Memory Registration&lt;/h3&gt;
+&lt;p&gt;Operation systems, typically include virtual memory management.
+Hardware has its finite number of resources, which includes physical memory. While each process has a range of virtual memory dedicated for its use. In almost every case, the number of processes, time, the size of the virtual memory for each process, is much bigger than the size of the actual physical memory available on the system. For example, if we take 32-bit system, the size of the virtual memory for each process is 4 Gbytes. The operation system is responsible for mapping that physical memory it has to the virtual memory in the processes.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/RDMA_Programming/VM_Management.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Now, the user-level software, which are most applications, only use virtual memory addresses. Some of the virtual memory range, is allocated and available for use, while the rest is vacant. Now, the applications can only access allocated memory. If we access vacant addresses, we get a segmentation fault. Addresses also have permissions like read, write, or the ability to execute code. When they allocate memory, the operation system takes the physical memory and maps it to a vacant space in our virtual addresses.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Protection &amp;amp; Permission (RW)&lt;/li&gt;
+&lt;li&gt;Memory Pinning(physical locking of memory)&lt;/li&gt;
+&lt;li&gt;Translation Handling&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Verbs can only send or receive to registered memory. Memory registration typically happens in the beginning of the application, and it is used throughout the run.&lt;/p&gt;
+&lt;h3 id=&#34;sendreceive-operation&#34;&gt;Send/Receive Operation&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;
+
+     Sender          Receiver
+        |               |
+Post SR |  \_data_      |  Post RR
+        |         \-&amp;gt;   |
+        |           /   |
+        |     -Ack--    |  Poll CQ
+Poll CQ |  &amp;lt;-/          |
+        |               |
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;rdma-write-operationone-sided&#34;&gt;RDMA Write Operation(One-sided)&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;     Sender                             Receiver
+        |                                   |
+Post SR |  \_____data+addr+rkey______       |  
+        |                             \-&amp;gt;   |
+        |                             /     |
+        |     -----------Ack---------       |  
+        |  &amp;lt;-/ (in Reliable Transports)     |
+Poll CQ |                                   |
+        |                                   |
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;rdma-read-operationone-sided&#34;&gt;RDMA Read Operation(One-sided)&lt;/h3&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;     Sender                             Receiver
+        |                                   |
+Post SR |  \_____data+addr+rkey______       |  
+        |                             \-&amp;gt;   |
+        |                             /     |
+        |     ----------data---------       |  
+        |  &amp;lt;-/ (in Reliable Transports)     |
+Poll CQ |                                   |
+        |                                   |
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;atomic-operations&#34;&gt;Atomic Operations&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Fetch and Add(FAA): fetch the current value of a number, then increase it by a different number.&lt;br&gt;
+ex. Multiple Cashier&lt;/li&gt;
+&lt;li&gt;Compare and Swap(CAS): compare the current value and if it matches, we replace it with a different value.&lt;br&gt;
+ex. Multiple withdraw from same bank account&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;3-rdma-code-example&#34;&gt;3. RDMA Code Example&lt;/h1&gt;
+&lt;h2 id=&#34;memory-registration&#34;&gt;Memory Registration&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define size_t int 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_pd &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pd;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_mr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;mr;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Memory Reg Example
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_mr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_reg_mr&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_pd &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pd,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;					    &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;addr, &lt;span style=&#34;color:#66d9ef&#34;&gt;size_t&lt;/span&gt; length,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;					    &lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; ibv_access_flags access); 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* Notice the following fields in struct ibv_mr:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;rkey  - The remote key of this MR
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;lkey  - The local key of this MR
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;addr “ The start address of the memory buffer that this MR registered
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;length “ The size of the memory buffer that was registered
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Deregister a Memory Region
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_dereg_mr&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_mr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;mr); 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;This verb should be called if there is no outstanding 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;Send Request or Receive Request that points to it
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rdma-send-request&#34;&gt;RDMA Send Request&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define size_t int 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define uint64_t int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define uint32_t int
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_pd &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pd;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_mr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;mr;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Scatter Gather Entry
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_sge {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; addr; &lt;span style=&#34;color:#75715e&#34;&gt;// Start address of the memory buffer (registered memory)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; length; &lt;span style=&#34;color:#75715e&#34;&gt;// Size (in bytes) of the memory buffer
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; lkey;   &lt;span style=&#34;color:#75715e&#34;&gt;// lkey of Memory Region associated with this memory buffer
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Post Send
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_post_send&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_qp &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;qp, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;wr,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;bad_wr);  &lt;span style=&#34;color:#75715e&#34;&gt;// wr - work request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; wr_id;            &lt;span style=&#34;color:#75715e&#34;&gt;// Private context that will be available in the corresponding Work Completion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;next;  &lt;span style=&#34;color:#75715e&#34;&gt;// Address of the next Send Request. NULL in the last Send Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_sge &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;sg_list;   &lt;span style=&#34;color:#75715e&#34;&gt;// Array of scatter/gather elements
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; num_sge;               &lt;span style=&#34;color:#75715e&#34;&gt;// Number of elements in sg_list
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; ibv_wr_opcode opcode; &lt;span style=&#34;color:#75715e&#34;&gt;// The opcode to be used
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; send_flags;            &lt;span style=&#34;color:#75715e&#34;&gt;// Send flags. Or of the following flags:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;/* IBV_SEND_FENCE “ Prevent process this Send Request until the processing of previous RDMA 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;    //                   Read and Atomic operations were completed.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;    //IBV_SEND_SIGNALED “ Generate a Work Completion after processing of this Send Request ends
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;    //IBV_SEND_SOLICITED “ Generate Solicited event for this message in remote side
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;    IBV_SEND_INLINE  - allow the low-level driver to read the gather buffers*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; imm_data;  &lt;span style=&#34;color:#75715e&#34;&gt;// Send message with immediate data (for supported opcodes)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;union&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {                           &lt;span style=&#34;color:#75715e&#34;&gt;// Attributes for RDMA Read and write opcodes
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; remote_addr;      &lt;span style=&#34;color:#75715e&#34;&gt;// Remote start address (the message size is according to the S/G entries)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; rkey;             &lt;span style=&#34;color:#75715e&#34;&gt;// rkey of Memory Region that is associated with remote memory buffer
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        } rdma;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {                           &lt;span style=&#34;color:#75715e&#34;&gt;// Attributes for Atomic opcodes 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; remote_addr;      &lt;span style=&#34;color:#75715e&#34;&gt;// Remote start address (the message size is according to the S/G entries)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; compare_add;      &lt;span style=&#34;color:#75715e&#34;&gt;// Value to compare/add (depends on opcode)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; swap;             &lt;span style=&#34;color:#75715e&#34;&gt;// Value to swap if the comparison passed
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;            &lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; rkey;             &lt;span style=&#34;color:#75715e&#34;&gt;// rkey of Memory Region that is associated with remote memory buffer
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;        } atomic;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rdma-receive-request&#34;&gt;RDMA Receive Request&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Post Receive Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_post_recv&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_qp &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;qp, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_recv_wr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;wr,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_recv_wr &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;bad_wr);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Post Send Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_post_send&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_qp &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;qp, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;wr,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                  &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_send_wr &lt;span style=&#34;color:#f92672&#34;&gt;**&lt;/span&gt;bad_wr);              
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;/* Warning: bad_wr is mandatory; It will be assigned with the address of 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;the Receive Request that its posting failed */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_recv_wr {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; wr_id;           &lt;span style=&#34;color:#75715e&#34;&gt;// Private context, available in the corresponding Work Completion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_recv_wr &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;next; &lt;span style=&#34;color:#75715e&#34;&gt;// Address of the next Receive Request. NULL in the last Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_sge &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;sg_list;  &lt;span style=&#34;color:#75715e&#34;&gt;// Array of scatter elements
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; num_sge;              &lt;span style=&#34;color:#75715e&#34;&gt;// Number of elements in sg_list
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rdma-request-completion&#34;&gt;RDMA Request Completion&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// Polling for work completion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ibv_poll_cq&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_cq &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;cq, &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; num_entries, &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_wc &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;wc);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//Work Completion for each entry
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; ibv_wc {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint64_t&lt;/span&gt; wr_id;                &lt;span style=&#34;color:#75715e&#34;&gt;// Private context that was posted in the corresponding Work Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; ibv_wc_status status;     &lt;span style=&#34;color:#75715e&#34;&gt;// The status of the Work Completion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; ibv_wc_opcode opcode;     &lt;span style=&#34;color:#75715e&#34;&gt;// The opcode of the Work Completion
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; vendor_err;           &lt;span style=&#34;color:#75715e&#34;&gt;// Vendor specific error syndrome
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; byte_len;             &lt;span style=&#34;color:#75715e&#34;&gt;// Number of bytes that were received
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; imm_data;             &lt;span style=&#34;color:#75715e&#34;&gt;// Immediate data, in network order, if the flags indicate that such exists
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; qp_num;               &lt;span style=&#34;color:#75715e&#34;&gt;// The local QP number that this Work Completion ended in
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint32_t&lt;/span&gt; src_qp;               &lt;span style=&#34;color:#75715e&#34;&gt;// The remote QP number
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; wc_flags;                  &lt;span style=&#34;color:#75715e&#34;&gt;// Work Completion flags. Or of the following flags:
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;     &lt;span style=&#34;color:#75715e&#34;&gt;/* IBV_WC_GRH “ Indicator that the first 40 bytes of the receive buffer(s) contain a valid GRH
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;      IBV_WC_WITH_IMM “ Indicator that the received message contains immediate data */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint16_t&lt;/span&gt; pkey_index;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint16_t&lt;/span&gt; slid;                                &lt;span style=&#34;color:#75715e&#34;&gt;// For UD QP: the source LID
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; sl;                                     &lt;span style=&#34;color:#75715e&#34;&gt;// For UD QP: the source Service Level
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;uint8_t&lt;/span&gt; dlid_path_bits;                      &lt;span style=&#34;color:#75715e&#34;&gt;// For UD QP: the destination LID path bits
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// typical completion statuses
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_SUCCESS “ Operation completed successfully
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_LOC_LEN_ERR “ Local length error when processing SR or RR
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_LOC_PROT_ERR “ Local Protection error; S/G entries doesn&amp;#39;t point to a valid MR
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_WR_FLUSH_ERR “ Work Request flush error; it was processed when the QP was in Error state
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_RETRY_EXC_ERR “ Retry exceeded; the remote QP didn™t send any ACK/NACK, even after
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//             message retransmission                                                                        
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;// IBV_WC_RNR_RETRY_EXC_ERR “ Receiver Not Ready; a message that requires a Receive Request
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;//            was sent, but isn&amp;#39;t any RR in the remote QP, even after message retransmission
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h1 id=&#34;4-connection-establishment&#34;&gt;4. Connection Establishment&lt;/h1&gt;
+&lt;p&gt;We saw some RDMA code examples, but we cannot really use those before we establish an initial connection with the other side.&lt;/p&gt;
+&lt;p&gt;Connection-oriented transports require a connection establishment between the two hosts before the data could be sent. So each side needs to have the opposite side address to establish the connection. And that leaves us with a chicken and egg problem. On the one hand, we need the address information in order to create a connection, but we also need some sort of connection to exchange those addresses.&lt;/p&gt;
+&lt;p&gt;This problem has two solutions.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;First, is out-of-band communication. It means we use different type of transport to exchange the addresses and then create the RDMA connection. For example, RC-ping-pong using TCP sockets to exchange information, like the remote QP number.&lt;/li&gt;
+&lt;li&gt;The second solution is Communication Manager. Two of its services are address exchange and a connection establishment. Now, the following information has to be exchanged before we can form a connection.
+&lt;ul&gt;
+&lt;li&gt;Layer2 &amp;amp; Layer3 addresses:
+&lt;ul&gt;
+&lt;li&gt;local identifier(LID): MAC&lt;/li&gt;
+&lt;li&gt;global identifier(GID): IP&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QP numbers: similar to TCP port&lt;/li&gt;
+&lt;li&gt;Packet Serial Number: sequence number in TCP&lt;/li&gt;
+&lt;li&gt;Communication details, ex. MTU&lt;/li&gt;
+&lt;li&gt;Additional info, ex. remote keys for registered buffers&lt;/li&gt;
+&lt;li&gt;Different transport types require further info, ex. RC QPs require the transmission count and the timer value.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;rdma-cm-connection-manager&#34;&gt;RDMA CM (Connection Manager)&lt;/h2&gt;
+&lt;p&gt;API is designed simlar to server-client in TCP.
+Like in TCP, in order to establish a connection, the server needs to bind and listen on the port. The client needs to connect to that port. Once the connection is established, you can either use the RDMA CM API or verbs API to communicate in that connection. So you either call RDMA post send or IBV post send.&lt;/p&gt;
+&lt;p&gt;Functions:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;(server)
+&lt;ul&gt;
+&lt;li&gt;rdma_bind_addr():  set the local port number to listen on&lt;/li&gt;
+&lt;li&gt;rdma_listen(): begin listening for connection requests&lt;/li&gt;
+&lt;li&gt;rdma_accept(): accept the connection request&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;(client)
+&lt;ul&gt;
+&lt;li&gt;rdma_connect(): connect to the remote server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Verb Specific:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;rdma_create_qp(): allocate a QP for the communication on the new rdma_cm_id&lt;/li&gt;
+&lt;li&gt;rdma_post_send(): post a buffer to send a message&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;5-rcpingpong&#34;&gt;5. RCpingpong&lt;/h1&gt;
+- https://yuhaolu.github.io/posts/cs/rdma_nvidia/ - </description>
+        </item>
     
     
     
