@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ML on Yuhao&#39;s Blog</title>
-    <link>https://yuhaolu.github.io/tags/ml/</link>
-    <description>Recent content in ML on Yuhao&#39;s Blog</description>
+    <title>Machine Learning on Yuhao&#39;s Blog</title>
+    <link>https://yuhaolu.github.io/categories/machine-learning/</link>
+    <description>Recent content in Machine Learning on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 29 Jun 2024 15:19:36 -0700</lastBuildDate>
-    <atom:link href="https://yuhaolu.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://yuhaolu.github.io/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Machine Learning</title>
       <link>https://yuhaolu.github.io/posts/ai/ml_stanford/</link>
