@@ -967,27 +967,14 @@ the answer is [true, false, true]. For each query, the subarray sums are [12, 14
     
     
         <item>
-        <title>First Post</title>
-        <link>https://yuhaolu.github.io/posts/first_post/</link>
-        <pubDate>Wed, 08 May 2024 13:45:37 -0700</pubDate>
-        
-        <guid>https://yuhaolu.github.io/posts/first_post/</guid>
-        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/posts/first_post/ -&lt;p&gt;This is a test markdown blog post.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;print(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello World!&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://yuhaolu.github.io/posts/first_post/ - </description>
-        </item>
-    
-    
-    
-        <item>
         <title>About Me</title>
         <link>https://yuhaolu.github.io/about/</link>
         <pubDate>Sat, 04 May 2024 21:36:02 -0700</pubDate>
         
         <guid>https://yuhaolu.github.io/about/</guid>
-        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/about/ -&lt;p&gt;Hello, Welcome to my Blog.&lt;/p&gt;
+        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/about/ -&lt;p&gt;Hello, welcome to my Blog.&lt;/p&gt;
 &lt;p&gt;I am a senior engineer at Qualcomm working on system level test of laptop processor (Snapdragon Elite X) and mobile phone chip(Snapdragon 8 Gen3).&lt;/p&gt;
-&lt;p&gt;This is a blog where I record my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&lt;/p&gt;
+&lt;p&gt;This is a place where I note my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&lt;/p&gt;
 &lt;p&gt;If you have any questions, feel free to reach me at:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Email: &lt;a href=&#34;mailto:yuhao.lu@hotmail.com&#34;&gt;yuhao.lu@hotmail.com&lt;/a&gt;&lt;/li&gt;
