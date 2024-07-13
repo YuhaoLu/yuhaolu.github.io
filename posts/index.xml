@@ -20,7 +20,7 @@
       <link>https://yuhaolu.github.io/posts/ai/ml_stanford/</link>
       <pubDate>Sat, 29 Jun 2024 15:19:36 -0700</pubDate>
       <guid>https://yuhaolu.github.io/posts/ai/ml_stanford/</guid>
-      <description>Machine Learning Ref: https://www.coursera.org/learn/machine-learning&#xA;Mimic human learning process of generating output based on specified inputs, like a turning machine&#xA;Supervised Machine Learning Regression and Classification&#xA;Linear regression logistic regression gradient descent Neural Network prob: high training error - high bias sol: consider more features -&amp;gt; use larger neural network&#xA;prob: high correlation error - high variance sol: cut weights of some features -&amp;gt; use more data&#xA;Understanding comes from talent &amp;amp; intelligence, Deduction comes from learning &amp;amp; experience</description>
+      <description>Machine Learning Ref: https://www.coursera.org/learn/machine-learning&#xA;Mimic human learning process of generating output based on specified inputs, like a turning machine&#xA;Supervised Machine Learning Regression and Classification&#xA;Linear regression logistic regression gradient descent Neural Network Problem: high training error - high bias&#xA;Solution: consider more features -&amp;gt; use larger neural network&#xA;Problem: high correlation error - high variance&#xA;Solution: cut weights of some features -&amp;gt; use more data&#xA;Understanding comes from talent &amp;amp; intelligence, Deduction comes from learning &amp;amp; experience</description>
     </item>
     <item>
       <title>Array and Strings</title>
