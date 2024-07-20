@@ -6,9 +6,253 @@
     <description>Recent content on Yuhao&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jul 2024 16:09:21 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jul 2024 10:36:08 -0700</lastBuildDate>
     
         <atom:link href="https://yuhaolu.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Efficiency Tips for Engineers</title>
+        <link>https://yuhaolu.github.io/posts/misc/efficiency_tips/</link>
+        <pubDate>Sat, 20 Jul 2024 10:36:08 -0700</pubDate>
+        
+        <guid>https://yuhaolu.github.io/posts/misc/efficiency_tips/</guid>
+        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/posts/misc/efficiency_tips/ -&lt;p&gt;Ref: &lt;a href=&#34;https://www.youtube.com/watch?v=b33vqX74EcA&#34;&gt;https://www.youtube.com/watch?v=b33vqX74EcA&lt;/a&gt; (Talk given by Mo Tiwari)&lt;/p&gt;
+&lt;h1 id=&#34;things-to-know-in-20s&#34;&gt;Things to know in 20s&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Determine what&amp;rsquo;s important&lt;/li&gt;
+&lt;li&gt;On your deathbed, what do you want to say you have done?&lt;/li&gt;
+&lt;li&gt;Write down your goals, and stick them on your desk
+&lt;ul&gt;
+&lt;li&gt;Spend time with friends and family&lt;/li&gt;
+&lt;li&gt;Exercise&lt;/li&gt;
+&lt;li&gt;Finish your work project&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Everything else, cut as much as possible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;profile-your-time&#34;&gt;Profile your time&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;You would run a profiler to see where code spends its time&lt;/li&gt;
+&lt;li&gt;Profile yourself!&lt;/li&gt;
+&lt;li&gt;Self-logging post hoc is notor&lt;/li&gt;
+&lt;li&gt;RescueTime App
+&lt;ul&gt;
+&lt;li&gt;Highest productivity at 80%&lt;/li&gt;
+&lt;li&gt;Good weeks are around 65%&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Is your time spent aligned with your goals?&lt;/li&gt;
+&lt;li&gt;Organize and build systems&lt;/li&gt;
+&lt;li&gt;How much is your time worth&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;startegy&#34;&gt;Startegy&lt;/h1&gt;
+&lt;h2 id=&#34;1-reuse-dont-redo&#34;&gt;1. Reuse, don&amp;rsquo;t redo&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Taro example of building a web app&lt;/li&gt;
+&lt;li&gt;Engineering
+&lt;ul&gt;
+&lt;li&gt;Use existing frameworks as much as possible&lt;/li&gt;
+&lt;li&gt;Open Source is great!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Research/Math
+&lt;ul&gt;
+&lt;li&gt;Literature review&lt;/li&gt;
+&lt;li&gt;Often don&amp;rsquo;t need the detailed proofs&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Strategic Tip(find your nearest neighbor)
+&lt;ul&gt;
+&lt;li&gt;Reuse as much as possible&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2-make-decisions-in-advance&#34;&gt;2. Make decisions in advance&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Decision-making on-the-fly tends to be very poor&lt;/li&gt;
+&lt;li&gt;Influenced by emotions and biases&lt;/li&gt;
+&lt;li&gt;Run the scenarios in advance and decide what you&amp;rsquo;ll do in each
+&lt;ul&gt;
+&lt;li&gt;ex. If X happens, I&amp;rsquo;ll do Y&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3-important-vs-urgent&#34;&gt;3. Important vs. Urgent&lt;/h2&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;          ^
+          | Schedule | Do Now  |
+Important |---------------------
+          | Don&amp;#39;t do | Delegate|
+          |---------------------&amp;gt;
+                  Urgent
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;4-engineering-vs-research&#34;&gt;4. Engineering Vs. Research&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Engineering:
+&lt;ul&gt;
+&lt;li&gt;Problem and solution are known&lt;/li&gt;
+&lt;li&gt;Largest costs are execution time&lt;/li&gt;
+&lt;li&gt;Prioritize (highest-value / time) first&lt;/li&gt;
+&lt;li&gt;Prioritize getting end-to-end system working&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Research:
+&lt;ul&gt;
+&lt;li&gt;Problem and solutions are unknown&lt;/li&gt;
+&lt;li&gt;Most things will fail; that&amp;rsquo;s expected&lt;/li&gt;
+&lt;li&gt;Your responsibility is to fail fast and reveal that if possible&lt;/li&gt;
+&lt;li&gt;Monkdy on a pedestal
+&lt;ul&gt;
+&lt;li&gt;Decision between train monkey to recite Shakespeare or build a pedestal&lt;/li&gt;
+&lt;li&gt;Train monkey to recite Shakespeare (Hard to success but bring more value in long term)&lt;/li&gt;
+&lt;li&gt;Build a pedestal (Easy to achieve in short term and bring little value)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5-motivation&#34;&gt;5. Motivation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Motivation succeeds action, not precede&lt;/li&gt;
+&lt;li&gt;Just get started!
+&lt;ul&gt;
+&lt;li&gt;Stress is highest when you&amp;rsquo;re thinking about starting&lt;/li&gt;
+&lt;li&gt;Waiting doesn&amp;rsquo;t make the water warmer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&amp;ldquo;Do it for 5 minutes&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Leave a &amp;ldquo;breadcurmb&amp;rdquo; task for tomorrow morning
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;Make your bed&amp;rdquo; principle&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Swallow the toad (Do the hardest thing first!)
+&lt;ul&gt;
+&lt;li&gt;Stress integrated over time will be lower&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;6-procrastination-&#34;&gt;6. Procrastination !!!&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;NOT about laziness or willpower&lt;/li&gt;
+&lt;li&gt;Rather, it&amp;rsquo;s about emotional management
+&lt;ul&gt;
+&lt;li&gt;Perceived effort and perceived reward&lt;/li&gt;
+&lt;li&gt;Perceived effort is often very different from actual effort&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Different people have different emotional responses to different tasks&lt;/li&gt;
+&lt;li&gt;Get severe enough to lead to &lt;em&gt;avoidance&lt;/em&gt;
+&lt;ul&gt;
+&lt;li&gt;Scroll phone, play video games, etc.&lt;/li&gt;
+&lt;li&gt;Then punish themselves and feel even worse about the task&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Lower activation energy
+&lt;ul&gt;
+&lt;li&gt;Reward yourself after completes the task&lt;/li&gt;
+&lt;li&gt;Do it with friends/colleagues&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;operations&#34;&gt;Operations&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Build in time for breaks&lt;/li&gt;
+&lt;li&gt;Dopamine fasts (Doing absolutely nothing)
+&lt;ul&gt;
+&lt;li&gt;After 15 minutes, you&amp;rsquo;ll be so bored you &lt;em&gt;want&lt;/em&gt; to do your work&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Meditation&lt;/li&gt;
+&lt;li&gt;Time-blocking
+&lt;ul&gt;
+&lt;li&gt;with buffers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Energy audit
+&lt;ul&gt;
+&lt;li&gt;Can I condition myself to be MORE energized?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Pomodoro technique
+&lt;ul&gt;
+&lt;li&gt;Work for a fixed amount of time, rest for a fixed amount of time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;focus-and-phones&#34;&gt;Focus and phones&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The importance of focus&lt;/li&gt;
+&lt;li&gt;Deep work&lt;/li&gt;
+&lt;li&gt;Phones:
+&lt;ul&gt;
+&lt;li&gt;Lead to anxiety and hypervigilance&lt;/li&gt;
+&lt;li&gt;Reading books, talking to family, more peace&lt;/li&gt;
+&lt;li&gt;Greyscale it!&lt;/li&gt;
+&lt;li&gt;Challenge: go without your phone for one day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;tactics&#34;&gt;Tactics&lt;/h1&gt;
+&lt;h2 id=&#34;efficiency-tech&#34;&gt;Efficiency: tech&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;I&amp;rsquo;m doing this a lot. How can I do it faster?&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Get to know your hotkeys!
+&lt;ul&gt;
+&lt;li&gt;Terminal&lt;/li&gt;
+&lt;li&gt;IDE&lt;/li&gt;
+&lt;li&gt;Control you Mac&lt;/li&gt;
+&lt;li&gt;Challenge: go without your mouse for a day&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Get more screens&lt;/li&gt;
+&lt;li&gt;Systems
+&lt;ul&gt;
+&lt;li&gt;1-click meetings&lt;/li&gt;
+&lt;li&gt;Document your frequent communications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;efficiency-behaviors&#34;&gt;Efficiency: behaviors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;ldquo;No imaginary rules&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Speed-reading
+&lt;ul&gt;
+&lt;li&gt;Swiftread&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Speech-to-text&lt;/li&gt;
+&lt;li&gt;Memorize common function names / theorems
+&lt;ul&gt;
+&lt;li&gt;Don&amp;rsquo;t look up every time&lt;/li&gt;
+&lt;li&gt;Should be able to write programs from scratch / without references&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Print out papers / reading!&lt;/li&gt;
+&lt;li&gt;If something takes &amp;lt; 2 minutes, do it now&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;cheatsheet&#34;&gt;Cheatsheet&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Say &amp;ldquo;no&amp;rdquo; to as much as you can
+&lt;ul&gt;
+&lt;li&gt;Decline meeting invites&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Be clear about what can be satisficed vs. optimized
+&lt;ul&gt;
+&lt;li&gt;Timebox these things&lt;/li&gt;
+&lt;li&gt;Paradox: choosing between two close choices is harder than two disparate ones&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Have a routine
+&lt;ul&gt;
+&lt;li&gt;Schedule your day in advance&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Read!&lt;/li&gt;
+&lt;/ul&gt;
+- https://yuhaolu.github.io/posts/misc/efficiency_tips/ - </description>
+        </item>
     
     
     
@@ -977,15 +1221,15 @@ the answer is [true, false, true]. For each query, the subarray sums are [12, 14
     
         <item>
         <title>About Me</title>
-        <link>https://yuhaolu.github.io/about/</link>
+        <link>https://yuhaolu.github.io/posts/about/</link>
         <pubDate>Sat, 04 May 2024 21:36:02 -0700</pubDate>
         
-        <guid>https://yuhaolu.github.io/about/</guid>
-        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/about/ -&lt;p&gt;Hello, welcome to my Blog.&lt;/p&gt;
+        <guid>https://yuhaolu.github.io/posts/about/</guid>
+        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/posts/about/ -&lt;p&gt;Hello, welcome to my Blog.&lt;/p&gt;
 &lt;p&gt;I am a senior engineer at Qualcomm working on system level test of laptop processor (Snapdragon Elite X) and mobile phone chip(Snapdragon 8 Gen3).&lt;/p&gt;
 &lt;p&gt;This is a place where I note down my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&lt;/p&gt;
 &lt;p&gt;If you have any questions, feel free to reach me at:&lt;/p&gt;
-&lt;p&gt;Email: &lt;a href=&#34;mailto:yuhao.lu@hotmail.com&#34;&gt;yuhao.lu@hotmail.com&lt;/a&gt;&lt;br&gt;
+&lt;p&gt;Email: &lt;a href=&#34;mailto:yuhao.lu@hotmail.com&#34;&gt;yuhao.lu@hotmail.com&lt;/a&gt;
 Linkedin: &lt;a href=&#34;https://www.linkedin.com/in/yuhao-lu-dev/&#34;&gt;www.linkedin.com/in/yuhao-lu-dev/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Some facts about me:&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -1002,7 +1246,7 @@ Linkedin: &lt;a href=&#34;https://www.linkedin.com/in/yuhao-lu-dev/&#34;&gt;www.
 &lt;/li&gt;
 &lt;li&gt;I am a keyboard player.&lt;/li&gt;
 &lt;/ul&gt;
-- https://yuhaolu.github.io/about/ - </description>
+- https://yuhaolu.github.io/posts/about/ - </description>
         </item>
     
     

@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jul 2024 16:09:21 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jul 2024 10:36:08 -0700</lastBuildDate>
     <atom:link href="https://yuhaolu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficiency Tips for Engineers</title>
+      <link>https://yuhaolu.github.io/posts/misc/efficiency_tips/</link>
+      <pubDate>Sat, 20 Jul 2024 10:36:08 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/misc/efficiency_tips/</guid>
+      <description>Ref: https://www.youtube.com/watch?v=b33vqX74EcA (Talk given by Mo Tiwari)&#xA;Things to know in 20s Determine what&amp;rsquo;s important On your deathbed, what do you want to say you have done? Write down your goals, and stick them on your desk Spend time with friends and family Exercise Finish your work project Everything else, cut as much as possible Profile your time You would run a profiler to see where code spends its time Profile yourself!</description>
+    </item>
     <item>
       <title>RDMA Programming</title>
       <link>https://yuhaolu.github.io/posts/networks/rdma_nvidia/</link>
@@ -28,6 +35,13 @@
       <pubDate>Sat, 11 May 2024 11:27:22 -0700</pubDate>
       <guid>https://yuhaolu.github.io/posts/algo/array_n_strings/</guid>
       <description>Ref: https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms&#xA;1. Arrays C++ require you to specify the size and data type of the array during initialization but also have support for lists (like std::vector in C++).&#xA;2. Strings Strings are implemented differently between languages. In Python and Java, they are immutable. In C++, they are mutable.&#xA;Mutable or immutable? If you have a mutable array arr = [&amp;ldquo;a&amp;rdquo;, &amp;ldquo;b&amp;rdquo;, &amp;ldquo;c&amp;rdquo;] and an immutable string s = &amp;ldquo;abc&amp;rdquo;, but you want to instead represent &amp;ldquo;abd&amp;rdquo;, you can easily do arr[2] = &amp;ldquo;d&amp;rdquo;, but you cannot do s[2] = &amp;ldquo;d&amp;rdquo;.</description>
+    </item>
+    <item>
+      <title>About Me</title>
+      <link>https://yuhaolu.github.io/posts/about/</link>
+      <pubDate>Sat, 04 May 2024 21:36:02 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/about/</guid>
+      <description>Hello, welcome to my Blog.&#xA;I am a senior engineer at Qualcomm working on system level test of laptop processor (Snapdragon Elite X) and mobile phone chip(Snapdragon 8 Gen3).&#xA;This is a place where I note down my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&#xA;If you have any questions, feel free to reach me at:</description>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Habits on Yuhao&#39;s Blog</title>
+    <link>https://yuhaolu.github.io/tags/habits/</link>
+    <description>Recent content in Habits on Yuhao&#39;s Blog</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 20 Jul 2024 10:36:08 -0700</lastBuildDate>
+    <atom:link href="https://yuhaolu.github.io/tags/habits/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Efficiency Tips for Engineers</title>
+      <link>https://yuhaolu.github.io/posts/misc/efficiency_tips/</link>
+      <pubDate>Sat, 20 Jul 2024 10:36:08 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/misc/efficiency_tips/</guid>
+      <description>Ref: https://www.youtube.com/watch?v=b33vqX74EcA (Talk given by Mo Tiwari)&#xA;Things to know in 20s Determine what&amp;rsquo;s important On your deathbed, what do you want to say you have done? Write down your goals, and stick them on your desk Spend time with friends and family Exercise Finish your work project Everything else, cut as much as possible Profile your time You would run a profiler to see where code spends its time Profile yourself!</description>
+    </item>
+  </channel>
+</rss>

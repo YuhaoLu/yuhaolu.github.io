@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html><head>
+<title>Efficiency Tips for Engineers</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="Efficiency tips for engineers talk notes">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Blogs
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/about">
+                    About Me
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#things-to-know-in-20s" class="nav-things-to-know-in-20s">
+									Things to know in 20s
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#profile-your-time" class="nav-profile-your-time">
+									Profile your time
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#startegy" class="nav-startegy">
+									Startegy
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-reuse-dont-redo" class="nav-1-reuse-dont-redo">
+									1. Reuse, don’t redo
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-make-decisions-in-advance" class="nav-2-make-decisions-in-advance">
+									2. Make decisions in advance
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-important-vs-urgent" class="nav-3-important-vs-urgent">
+									3. Important vs. Urgent
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-engineering-vs-research" class="nav-4-engineering-vs-research">
+									4. Engineering Vs. Research
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5-motivation" class="nav-5-motivation">
+									5. Motivation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6-procrastination-" class="nav-6-procrastination-">
+									6. Procrastination !!!
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#operations" class="nav-operations">
+									Operations
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#focus-and-phones" class="nav-focus-and-phones">
+									Focus and phones
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#tactics" class="nav-tactics">
+									Tactics
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#efficiency-tech" class="nav-efficiency-tech">
+									Efficiency: tech
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#efficiency-behaviors" class="nav-efficiency-behaviors">
+									Efficiency: behaviors
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#cheatsheet" class="nav-cheatsheet">
+									Cheatsheet
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://yuhaolu.github.io/">
+            Yuhao&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://yuhaolu.github.io/">
+        <div class="single-column-header-title">Yuhao&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Efficiency Tips for Engineers
+                    
+                    <div class="post-subtitle">
+                        Efficiency tips for engineers talk notes
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2024-07-20 10:36
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/misc">Misc</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/productivity">Productivity</a>
+                                &nbsp;
+                            
+                                <a href="/tags/habits">Habits</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>Ref: <a href="https://www.youtube.com/watch?v=b33vqX74EcA">https://www.youtube.com/watch?v=b33vqX74EcA</a> (Talk given by Mo Tiwari)</p>
+<h1 id="things-to-know-in-20s">Things to know in 20s</h1>
+<ul>
+<li>Determine what&rsquo;s important</li>
+<li>On your deathbed, what do you want to say you have done?</li>
+<li>Write down your goals, and stick them on your desk
+<ul>
+<li>Spend time with friends and family</li>
+<li>Exercise</li>
+<li>Finish your work project</li>
+</ul>
+</li>
+<li>Everything else, cut as much as possible</li>
+</ul>
+<h2 id="profile-your-time">Profile your time</h2>
+<ul>
+<li>You would run a profiler to see where code spends its time</li>
+<li>Profile yourself!</li>
+<li>Self-logging post hoc is notor</li>
+<li>RescueTime App
+<ul>
+<li>Highest productivity at 80%</li>
+<li>Good weeks are around 65%</li>
+</ul>
+</li>
+<li>Is your time spent aligned with your goals?</li>
+<li>Organize and build systems</li>
+<li>How much is your time worth</li>
+</ul>
+<h1 id="startegy">Startegy</h1>
+<h2 id="1-reuse-dont-redo">1. Reuse, don&rsquo;t redo</h2>
+<ul>
+<li>Taro example of building a web app</li>
+<li>Engineering
+<ul>
+<li>Use existing frameworks as much as possible</li>
+<li>Open Source is great!</li>
+</ul>
+</li>
+<li>Research/Math
+<ul>
+<li>Literature review</li>
+<li>Often don&rsquo;t need the detailed proofs</li>
+</ul>
+</li>
+<li>Strategic Tip(find your nearest neighbor)
+<ul>
+<li>Reuse as much as possible</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-make-decisions-in-advance">2. Make decisions in advance</h2>
+<ul>
+<li>Decision-making on-the-fly tends to be very poor</li>
+<li>Influenced by emotions and biases</li>
+<li>Run the scenarios in advance and decide what you&rsquo;ll do in each
+<ul>
+<li>ex. If X happens, I&rsquo;ll do Y</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-important-vs-urgent">3. Important vs. Urgent</h2>
+<pre tabindex="0"><code>          ^
+          | Schedule | Do Now  |
+Important |---------------------
+          | Don&#39;t do | Delegate|
+          |---------------------&gt;
+                  Urgent
+</code></pre><h2 id="4-engineering-vs-research">4. Engineering Vs. Research</h2>
+<ul>
+<li>Engineering:
+<ul>
+<li>Problem and solution are known</li>
+<li>Largest costs are execution time</li>
+<li>Prioritize (highest-value / time) first</li>
+<li>Prioritize getting end-to-end system working</li>
+</ul>
+</li>
+<li>Research:
+<ul>
+<li>Problem and solutions are unknown</li>
+<li>Most things will fail; that&rsquo;s expected</li>
+<li>Your responsibility is to fail fast and reveal that if possible</li>
+<li>Monkdy on a pedestal
+<ul>
+<li>Decision between train monkey to recite Shakespeare or build a pedestal</li>
+<li>Train monkey to recite Shakespeare (Hard to success but bring more value in long term)</li>
+<li>Build a pedestal (Easy to achieve in short term and bring little value)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-motivation">5. Motivation</h2>
+<ul>
+<li>Motivation succeeds action, not precede</li>
+<li>Just get started!
+<ul>
+<li>Stress is highest when you&rsquo;re thinking about starting</li>
+<li>Waiting doesn&rsquo;t make the water warmer</li>
+</ul>
+</li>
+<li>&ldquo;Do it for 5 minutes&rdquo;</li>
+<li>Leave a &ldquo;breadcurmb&rdquo; task for tomorrow morning
+<ul>
+<li>&ldquo;Make your bed&rdquo; principle</li>
+</ul>
+</li>
+<li>Swallow the toad (Do the hardest thing first!)
+<ul>
+<li>Stress integrated over time will be lower</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-procrastination-">6. Procrastination !!!</h2>
+<ul>
+<li>NOT about laziness or willpower</li>
+<li>Rather, it&rsquo;s about emotional management
+<ul>
+<li>Perceived effort and perceived reward</li>
+<li>Perceived effort is often very different from actual effort</li>
+</ul>
+</li>
+<li>Different people have different emotional responses to different tasks</li>
+<li>Get severe enough to lead to <em>avoidance</em>
+<ul>
+<li>Scroll phone, play video games, etc.</li>
+<li>Then punish themselves and feel even worse about the task</li>
+</ul>
+</li>
+<li>Lower activation energy
+<ul>
+<li>Reward yourself after completes the task</li>
+<li>Do it with friends/colleagues</li>
+</ul>
+</li>
+</ul>
+<h1 id="operations">Operations</h1>
+<ul>
+<li>Build in time for breaks</li>
+<li>Dopamine fasts (Doing absolutely nothing)
+<ul>
+<li>After 15 minutes, you&rsquo;ll be so bored you <em>want</em> to do your work</li>
+</ul>
+</li>
+<li>Meditation</li>
+<li>Time-blocking
+<ul>
+<li>with buffers</li>
+</ul>
+</li>
+<li>Energy audit
+<ul>
+<li>Can I condition myself to be MORE energized?</li>
+</ul>
+</li>
+<li>Pomodoro technique
+<ul>
+<li>Work for a fixed amount of time, rest for a fixed amount of time</li>
+</ul>
+</li>
+</ul>
+<h2 id="focus-and-phones">Focus and phones</h2>
+<ul>
+<li>The importance of focus</li>
+<li>Deep work</li>
+<li>Phones:
+<ul>
+<li>Lead to anxiety and hypervigilance</li>
+<li>Reading books, talking to family, more peace</li>
+<li>Greyscale it!</li>
+<li>Challenge: go without your phone for one day</li>
+</ul>
+</li>
+</ul>
+<h1 id="tactics">Tactics</h1>
+<h2 id="efficiency-tech">Efficiency: tech</h2>
+<ul>
+<li>&ldquo;I&rsquo;m doing this a lot. How can I do it faster?&rdquo;</li>
+<li>Get to know your hotkeys!
+<ul>
+<li>Terminal</li>
+<li>IDE</li>
+<li>Control you Mac</li>
+<li>Challenge: go without your mouse for a day</li>
+</ul>
+</li>
+<li>Get more screens</li>
+<li>Systems
+<ul>
+<li>1-click meetings</li>
+<li>Document your frequent communications</li>
+</ul>
+</li>
+</ul>
+<h2 id="efficiency-behaviors">Efficiency: behaviors</h2>
+<ul>
+<li>&ldquo;No imaginary rules&rdquo;</li>
+<li>Speed-reading
+<ul>
+<li>Swiftread</li>
+</ul>
+</li>
+<li>Speech-to-text</li>
+<li>Memorize common function names / theorems
+<ul>
+<li>Don&rsquo;t look up every time</li>
+<li>Should be able to write programs from scratch / without references</li>
+</ul>
+</li>
+<li>Print out papers / reading!</li>
+<li>If something takes &lt; 2 minutes, do it now</li>
+</ul>
+<h2 id="cheatsheet">Cheatsheet</h2>
+<ul>
+<li>Say &ldquo;no&rdquo; to as much as you can
+<ul>
+<li>Decline meeting invites</li>
+</ul>
+</li>
+<li>Be clear about what can be satisficed vs. optimized
+<ul>
+<li>Timebox these things</li>
+<li>Paradox: choosing between two close choices is harder than two disparate ones</li>
+</ul>
+</li>
+<li>Have a routine
+<ul>
+<li>Schedule your day in advance</li>
+</ul>
+</li>
+<li>Read!</li>
+</ul>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2024-07-20</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			&lt; Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/posts/networks/rdma_nvidia/">
+			Previous &gt;<br>RDMA Programming
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://yuhaolu.github.io/">
+    
+        <div class="nav-title">
+            Yuhao&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Blogs
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/about">
+                About Me
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#things-to-know-in-20s" class="nav-things-to-know-in-20s">
+									Things to know in 20s
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#profile-your-time" class="nav-profile-your-time">
+									Profile your time
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#startegy" class="nav-startegy">
+									Startegy
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-reuse-dont-redo" class="nav-1-reuse-dont-redo">
+									1. Reuse, don’t redo
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-make-decisions-in-advance" class="nav-2-make-decisions-in-advance">
+									2. Make decisions in advance
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#3-important-vs-urgent" class="nav-3-important-vs-urgent">
+									3. Important vs. Urgent
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#4-engineering-vs-research" class="nav-4-engineering-vs-research">
+									4. Engineering Vs. Research
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#5-motivation" class="nav-5-motivation">
+									5. Motivation
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#6-procrastination-" class="nav-6-procrastination-">
+									6. Procrastination !!!
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#operations" class="nav-operations">
+									Operations
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#focus-and-phones" class="nav-focus-and-phones">
+									Focus and phones
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#tactics" class="nav-tactics">
+									Tactics
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#efficiency-tech" class="nav-efficiency-tech">
+									Efficiency: tech
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#efficiency-behaviors" class="nav-efficiency-behaviors">
+									Efficiency: behaviors
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#cheatsheet" class="nav-cheatsheet">
+									Cheatsheet
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>
