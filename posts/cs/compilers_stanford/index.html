@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Machine Learning</title>
+<title>Compilers</title>
 
 
 
@@ -10,7 +10,7 @@
 <meta name="google-site-verification" content="">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <meta content="telephone=no" name="format-detection">
-<meta name="description" content="Supervised/Unsupervised Machine Learning Algorithms">
+<meta name="description" content="">
 <meta name="renderer" content="webkit">
 <meta name="theme-color" content="#ffffff">
 
@@ -135,24 +135,6 @@
 						
 						
 						
-						
-							<li>
-								<a href="#machine-learning" class="nav-machine-learning">
-									Machine Learning
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
 							
 								
 									<ul>
@@ -161,8 +143,8 @@
 						
 						
 							<li>
-								<a href="#supervised-machine-learning" class="nav-supervised-machine-learning">
-									Supervised Machine Learning
+								<a href="#compilers-vs-interpreter" class="nav-compilers-vs-interpreter">
+									Compilers Vs. Interpreter
 								</a>
 							</li>
 						
@@ -179,8 +161,8 @@
 						
 						
 							<li>
-								<a href="#neural-network" class="nav-neural-network">
-									Neural Network
+								<a href="#structure-of-a-compiler" class="nav-structure-of-a-compiler">
+									Structure of a Compiler
 								</a>
 							</li>
 						
@@ -197,8 +179,8 @@
 						
 						
 							<li>
-								<a href="#decision-tree" class="nav-decision-tree">
-									Decision tree
+								<a href="#the-economy-of-programming-languages" class="nav-the-economy-of-programming-languages">
+									The Economy of Programming Languages
 								</a>
 							</li>
 						
@@ -215,30 +197,8 @@
 						
 						
 							<li>
-								<a href="#unsupervised-learning" class="nav-unsupervised-learning">
-									Unsupervised Learning
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-								</ul>
-							
-						
-						
-						
-							<li>
-								<a href="#machine-learning-in-production" class="nav-machine-learning-in-production">
-									Machine Learning in Production
+								<a href="#compiler-project-overview" class="nav-compiler-project-overview">
+									Compiler Project Overview
 								</a>
 							</li>
 						
@@ -299,37 +259,17 @@
                 
             >
                 <div class="post-title">
-                    Machine Learning
-                    
-                    <div class="post-subtitle">
-                        Supervised/Unsupervised Machine Learning Algorithms
-                    </div>
+                    Compilers
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2024-06-29 15:19
+                            2024-08-04 16:07
                         </time>
                         
 
                         
-                            <i class="material-icons" style="">folder</i>
-                                <a href="/categories/machine-learning">Machine Learning</a>
-                                &nbsp;
-                        
 
-                        
-                            <i class="material-icons" style="">label</i>
-                            
-                                <a href="/tags/ai">AI</a>
-                                &nbsp;
-                            
-                                <a href="/tags/ml">ML</a>
-                                &nbsp;
-                            
-                                <a href="/tags/coursera">Coursera</a>
-                                &nbsp;
-                            
                         
                         
                     </div>
@@ -340,105 +280,199 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <h1 id="machine-learning">Machine Learning</h1>
-<p>Ref: <a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a></p>
-<p>Mimic human learning process of generating output based on specified inputs, like a turning machine</p>
-<h2 id="supervised-machine-learning">Supervised Machine Learning</h2>
-<p>Regression and Classification</p>
-<ul>
-<li>Linear regression</li>
-<li>logistic regression</li>
-<li>gradient descent</li>
-</ul>
-<h2 id="neural-network">Neural Network</h2>
-<p>Problem: high training error - high bias<br>
-Solution: consider more features -&gt; use larger neural network</p>
-<p>Problem: high correlation error - high variance<br>
-Solution: cut weights of some features -&gt; use more data</p>
-<p>Understanding comes from talent &amp; intelligence, Deduction comes from learning &amp; experience</p>
-<p>Iterative Loop of ML development</p>
-<ol>
-<li>Choose architecture (model, data etc)</li>
-<li>Train model</li>
-<li>Diagnostics(bias, variance, error analysis)</li>
-</ol>
-<p>AI = Code + Data</p>
-<p>What if you don&rsquo;t have data?</p>
-<ol>
-<li>Hand labeling critical data bins</li>
-<li>Synthesis data by adding variations of existing datasets (ex. rotate text fonts)</li>
-</ol>
-<p>Transfer Learning: Supervised pre-training + fine tuning</p>
-<ul>
-<li>Only train output layers parameters</li>
-<li>train all parameters</li>
-</ul>
-<h2 id="decision-tree">Decision tree</h2>
-<p>recursively picking the tree split that reduce enthropy the best</p>
-<p>Random Forest algorithm: Use multiple distinctive decision trees
-XGBoost Tree: train the tree on samples that doesn&rsquo;t preform well in previous iterations</p>
-<h2 id="unsupervised-learning">Unsupervised Learning</h2>
-<ul>
-<li>Clustering
-<ul>
-<li>K-means</li>
-</ul>
-</li>
-<li>Anomaly detection
-<ul>
-<li>Probability Density estimation, ex. 3σ for gaussian distribution features</li>
-</ul>
-</li>
-<li>Recommender System
-<ul>
-<li>Collaborative filtering</li>
-<li>Deep-learning for content based filtering</li>
-<li>Recommending from a large catalogue
-<ul>
-<li>Retrival &amp; Ranking</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Reinforcement Learning
-<ul>
-<li>state machine + positive/negative return, ex. good dog/bad dog</li>
-<li>Markov Decision Process(MDP)</li>
-<li>State-action value function
-<ul>
-<li>Belllman Equation</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="machine-learning-in-production">Machine Learning in Production</h1>
-<p>Lifecycle of ML</p>
-<ol>
-<li>Scope Project</li>
-<li>Collect Data
-<ul>
-<li>Define data and establish baseline</li>
-<li>Label and organize data</li>
-</ul>
-</li>
-<li>Train Model
-<ul>
-<li>Select and train model</li>
-<li>Perform error analysis</li>
-</ul>
-</li>
-<li>Deploy in production
-<ul>
-<li>Deploy in production</li>
-<li>Monitor &amp; maintain system</li>
-</ul>
-</li>
-</ol>
+                    <h2 id="compilers-vs-interpreter">Compilers Vs. Interpreter</h2>
+<pre tabindex="0"><code>1. Compilers (Offline)
+                       Data
+                        ↓
+Program -&gt; Compiler -&gt; exec
+                        ↓
+                       Output
 
+2. Interpreters (Online)
+Program + Data -&gt; Interpreter -&gt; Output
+</code></pre><h2 id="structure-of-a-compiler">Structure of a Compiler</h2>
+<ol>
+<li>Lexical Analysis (Syntactic)
+<ul>
+<li>Recognize words</li>
+<li>Devides program text into &ldquo;words&rdquo; or &ldquo;tokens&rdquo;</li>
+</ul>
+</li>
+<li>Parsing (Syntactic)
+<ul>
+<li>Understand sentence structure</li>
+<li>Diagramming Sentences into a tree</li>
+</ul>
+</li>
+<li>Semantic Analysis (Types, Scope)
+<ul>
+<li>Try to understand the meaning(This is hard!)</li>
+<li>Perform semantic checks to catch inconsistencies</li>
+</ul>
+</li>
+<li>Optimization
+<ul>
+<li>Like &ldquo;editing&rdquo;</li>
+<li>Automatically modify program so that they run faster and use less memory</li>
+</ul>
+</li>
+<li>Code Generation (Translation)
+<ul>
+<li>Produces assembly code</li>
+<li>A translation into another language</li>
+</ul>
+</li>
+</ol>
+<h2 id="the-economy-of-programming-languages">The Economy of Programming Languages</h2>
+<p>Q: Why are there so many programming languages?
+A: Application domains have distinctive/conflicting needs. It is hard to design one system for all.</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Features Needed</th>
+<th>Programming Language</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scientific Computing</td>
+<td>good FP<!-- raw HTML omitted -->good arrays<!-- raw HTML omitted -->parallelism</td>
+<td>Fortran</td>
+</tr>
+<tr>
+<td>Business Application</td>
+<td>persistence<!-- raw HTML omitted -->report generation<!-- raw HTML omitted -->data anlysis</td>
+<td>SQL</td>
+</tr>
+<tr>
+<td>System Programming</td>
+<td>control of resources<!-- raw HTML omitted -->real time constrains</td>
+<td>C/C++</td>
+</tr>
+</tbody>
+</table>
+<p>Q: Why are there new programming languages?<br>
+A: Programmer training is the dominant cost for a programming language.</p>
+<ol>
+<li>Widely-used languages are slow to change</li>
+<li>Easy to start a new language
+<ul>
+<li>productivity &gt; training cost</li>
+</ul>
+</li>
+<li>Languages adopted to fill a void</li>
+<li>New languages tend to look like old language</li>
+</ol>
+<p>Q: What is a good programming language?
+A: There is no universal accepted metric for language design.</p>
+<h2 id="compiler-project-overview">Compiler Project Overview</h2>
+<p>Classroom Object Oriented Language (COOL)</p>
+<p>Designed to be implementable in a short time</p>
+<p>Give a taste of the implementation of modern</p>
+<ul>
+<li>Abstraction</li>
+<li>Static typing</li>
+<li>Reuese (inheritance)</li>
+<li>Memory management</li>
+<li>And more &hellip;</li>
+</ul>
+<p>A complete compiler</p>
+<ul>
+<li>Cool -&gt; MIPS assembly language</li>
+</ul>
+<p>In 5 programming assignments(PAs)</p>
+<ul>
+<li>Write a Cool program</li>
+<li>Lexical analysis</li>
+<li>Parsing</li>
+<li>Semantic analysis</li>
+<li>Code generation</li>
+</ul>
+<pre tabindex="0"><code class="language-Cool" data-lang="Cool">class Main {
+    i : IO &lt;- new IO;
+    main():Int { 
+        {
+            i.out_string(&#34;Hello World!\n&#34;);
+            1;
+        }
+    };
+}
+
+class Main {
+    i : IO &lt;- new IO;
+    main():IO { 
+      i.out_string(&#34;Hello World!\n&#34;);   
+    };
+}
+
+class Main {
+    main():Object { 
+      (new IO).out_string(&#34;Hello World!\n&#34;);   
+    };
+}
+
+class Main inherits IO {
+    main():Object { 
+      self.out_string(&#34;Hello World!\n&#34;);   
+    };
+}
+
+class Main inherits IO {
+    main():Object { 
+      out_string(&#34;Hello World!\n&#34;);   
+    };
+}
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&gt; coolc test.cl
+</span></span><span style="display:flex;"><span>&gt; spim test.s
+</span></span></code></pre></div><p>Example: Factorial Function</p>
+<pre tabindex="0"><code class="language-Cool" data-lang="Cool">class Main {
+    main():Object { 
+      (new IO).out_string((new IO).in_string().concat(&#34;\n&#34;));   
+    };
+}
+
+class Main inherits A2I {
+    main():Object { 
+      (new IO).out_string(
+         i2a(
+            fact(
+               a2i((new IO).in_string())
+            )
+         ).concat(&#34;\n&#34;));   
+    };
+    
+    fact(i :Int):Int {
+      if (i = 0) then 1 else i * fact(i-1) fi
+    };
+}
+
+class Main inherits A2I {
+    main():Object { 
+      (new IO).out_string(
+         i2a(
+            fact(
+               a2i((new IO).in_string())
+            )
+         ).concat(&#34;\n&#34;));   
+    };
+    
+    fact(i :Int):Int {
+      let fact: Int &lt;- 1 in {
+         while (not (i = 0)) loop
+            {
+               fact &lt;- fact * i;
+               i &lt;- i - 1;
+            }
+         pool;
+         fact;
+      }
+    };
+}
+</code></pre>
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2024-06-29</p>
+		    <p style="color:#777;">Last modified on 2024-08-04</p>
                     
                 </div>
             </div>
@@ -447,14 +481,14 @@ XGBoost Tree: train the tree on samples that doesn&rsquo;t preform well in previ
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="/posts/networks/rdma_nvidia/">
-			&lt; Next<br>RDMA Programming
+                <a class="newer-posts" href="/posts/cs/cryptography_stanford/">
+			&lt; Next<br>Cryptography_stanford
                 </a>
                 
                 
                 
-                <a class="older-posts" href="/posts/algo/array_n_strings/">
-			Previous &gt;<br>Array and Strings
+                <a class="older-posts" href="/posts/misc/marathon_preparation/">
+			Previous &gt;<br>Marathon_preparation
                 </a>
                 
             </nav>
@@ -584,24 +618,6 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 						
-						
-							<li>
-								<a href="#machine-learning" class="nav-machine-learning">
-									Machine Learning
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
 							
 								
 									<ul>
@@ -610,8 +626,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#supervised-machine-learning" class="nav-supervised-machine-learning">
-									Supervised Machine Learning
+								<a href="#compilers-vs-interpreter" class="nav-compilers-vs-interpreter">
+									Compilers Vs. Interpreter
 								</a>
 							</li>
 						
@@ -628,8 +644,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#neural-network" class="nav-neural-network">
-									Neural Network
+								<a href="#structure-of-a-compiler" class="nav-structure-of-a-compiler">
+									Structure of a Compiler
 								</a>
 							</li>
 						
@@ -646,8 +662,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#decision-tree" class="nav-decision-tree">
-									Decision tree
+								<a href="#the-economy-of-programming-languages" class="nav-the-economy-of-programming-languages">
+									The Economy of Programming Languages
 								</a>
 							</li>
 						
@@ -664,30 +680,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#unsupervised-learning" class="nav-unsupervised-learning">
-									Unsupervised Learning
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-							
-								</ul>
-							
-						
-						
-						
-							<li>
-								<a href="#machine-learning-in-production" class="nav-machine-learning-in-production">
-									Machine Learning in Production
+								<a href="#compiler-project-overview" class="nav-compiler-project-overview">
+									Compiler Project Overview
 								</a>
 							</li>
 						

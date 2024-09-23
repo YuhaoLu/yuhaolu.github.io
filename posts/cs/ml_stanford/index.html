@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>About Me</title>
+<title>Machine Learning</title>
 
 
 
@@ -10,7 +10,7 @@
 <meta name="google-site-verification" content="">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <meta content="telephone=no" name="format-detection">
-<meta name="description" content="Hello, Welcome to my blog">
+<meta name="description" content="Supervised/Unsupervised Machine Learning Algorithms">
 <meta name="renderer" content="webkit">
 <meta name="theme-color" content="#ffffff">
 
@@ -118,6 +118,137 @@
             <div class="toc">
 
 
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#machine-learning" class="nav-machine-learning">
+									Machine Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#supervised-machine-learning" class="nav-supervised-machine-learning">
+									Supervised Machine Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#neural-network" class="nav-neural-network">
+									Neural Network
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#decision-tree" class="nav-decision-tree">
+									Decision tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#unsupervised-learning" class="nav-unsupervised-learning">
+									Unsupervised Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#machine-learning-in-production" class="nav-machine-learning-in-production">
+									Machine Learning in Production
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
 </div>
             
         </div>
@@ -168,21 +299,37 @@
                 
             >
                 <div class="post-title">
-                    About Me
+                    Machine Learning
                     
                     <div class="post-subtitle">
-                        Hello, Welcome to my blog
+                        Supervised/Unsupervised Machine Learning Algorithms
                     </div>
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2024-05-04 21:36
+                            2024-06-29 15:19
                         </time>
                         
 
                         
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/machine-learning">Machine Learning</a>
+                                &nbsp;
+                        
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/ai">AI</a>
+                                &nbsp;
+                            
+                                <a href="/tags/ml">ML</a>
+                                &nbsp;
+                            
+                                <a href="/tags/coursera">Coursera</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
@@ -193,31 +340,105 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <p>Hello, welcome to my Blog.</p>
-<p>I am a senior engineer at Qualcomm working on system level test of AI laptop processor and premium tier mobile phone chipsets.</p>
-<p>This is a place where I note down my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.</p>
-<p>If you have any questions, feel free to reach me at:</p>
-<p>Email: <a href="mailto:yuhao.lu@hotmail.com">yuhao.lu@hotmail.com</a><br>
-Linkedin: <a href="https://www.linkedin.com/in/yuhao-lu-dev/">www.linkedin.com/in/yuhao-lu-dev/</a></p>
-<p><strong>Some facts about me:</strong></p>
+                    <h1 id="machine-learning">Machine Learning</h1>
+<p>Ref: <a href="https://www.coursera.org/learn/machine-learning">https://www.coursera.org/learn/machine-learning</a></p>
+<p>Mimic human learning process of generating output based on specified inputs, like a turning machine</p>
+<h2 id="supervised-machine-learning">Supervised Machine Learning</h2>
+<p>Regression and Classification</p>
 <ul>
-<li>I have great interests in:
+<li>Linear regression</li>
+<li>logistic regression</li>
+<li>gradient descent</li>
+</ul>
+<h2 id="neural-network">Neural Network</h2>
+<p>Problem: high training error - high bias<br>
+Solution: consider more features -&gt; use larger neural network</p>
+<p>Problem: high correlation error - high variance<br>
+Solution: cut weights of some features -&gt; use more data</p>
+<p>Understanding comes from talent &amp; intelligence, Deduction comes from learning &amp; experience</p>
+<p>Iterative Loop of ML development</p>
+<ol>
+<li>Choose architecture (model, data etc)</li>
+<li>Train model</li>
+<li>Diagnostics(bias, variance, error analysis)</li>
+</ol>
+<p>AI = Code + Data</p>
+<p>What if you don&rsquo;t have data?</p>
+<ol>
+<li>Hand labeling critical data bins</li>
+<li>Synthesis data by adding variations of existing datasets (ex. rotate text fonts)</li>
+</ol>
+<p>Transfer Learning: Supervised pre-training + fine tuning</p>
 <ul>
-<li>Teach computers to read text and manuscripts like human.</li>
-<li>Build high-concurrency, low-latency communication systems.</li>
+<li>Only train output layers parameters</li>
+<li>train all parameters</li>
+</ul>
+<h2 id="decision-tree">Decision tree</h2>
+<p>recursively picking the tree split that reduce enthropy the best</p>
+<p>Random Forest algorithm: Use multiple distinctive decision trees
+XGBoost Tree: train the tree on samples that doesn&rsquo;t preform well in previous iterations</p>
+<h2 id="unsupervised-learning">Unsupervised Learning</h2>
+<ul>
+<li>Clustering
+<ul>
+<li>K-means</li>
 </ul>
 </li>
-<li>I am a Triathlate(Swim, Bike, Run) and Marathon runner.
+<li>Anomaly detection
 <ul>
-<li>Finished my 1st Marathon at Big Bear, LA in 4 hr 3 min.</li>
+<li>Probability Density estimation, ex. 3σ for gaussian distribution features</li>
 </ul>
 </li>
-<li>I am a keyboard player.</li>
+<li>Recommender System
+<ul>
+<li>Collaborative filtering</li>
+<li>Deep-learning for content based filtering</li>
+<li>Recommending from a large catalogue
+<ul>
+<li>Retrival &amp; Ranking</li>
 </ul>
+</li>
+</ul>
+</li>
+<li>Reinforcement Learning
+<ul>
+<li>state machine + positive/negative return, ex. good dog/bad dog</li>
+<li>Markov Decision Process(MDP)</li>
+<li>State-action value function
+<ul>
+<li>Belllman Equation</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="machine-learning-in-production">Machine Learning in Production</h1>
+<p>Lifecycle of ML</p>
+<ol>
+<li>Scope Project</li>
+<li>Collect Data
+<ul>
+<li>Define data and establish baseline</li>
+<li>Label and organize data</li>
+</ul>
+</li>
+<li>Train Model
+<ul>
+<li>Select and train model</li>
+<li>Perform error analysis</li>
+</ul>
+</li>
+<li>Deploy in production
+<ul>
+<li>Deploy in production</li>
+<li>Monitor &amp; maintain system</li>
+</ul>
+</li>
+</ol>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2024-05-04</p>
+		    <p style="color:#777;">Last modified on 2024-06-29</p>
                     
                 </div>
             </div>
@@ -226,14 +447,14 @@ Linkedin: <a href="https://www.linkedin.com/in/yuhao-lu-dev/">www.linkedin.com/i
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="/posts/algo/array_n_strings/">
-			&lt; Next<br>Array and Strings
+                <a class="newer-posts" href="/posts/networks/rdma_nvidia/">
+			&lt; Next<br>RDMA Programming
                 </a>
                 
                 
                 
-                <a class="older-posts">
-			Previous &gt;<br>No older posts.
+                <a class="older-posts" href="/posts/algo/array_n_strings/">
+			Previous &gt;<br>Array and Strings
                 </a>
                 
             </nav>
@@ -345,6 +566,137 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
         
         <div class="toc">
 
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#machine-learning" class="nav-machine-learning">
+									Machine Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#supervised-machine-learning" class="nav-supervised-machine-learning">
+									Supervised Machine Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#neural-network" class="nav-neural-network">
+									Neural Network
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#decision-tree" class="nav-decision-tree">
+									Decision tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#unsupervised-learning" class="nav-unsupervised-learning">
+									Unsupervised Learning
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#machine-learning-in-production" class="nav-machine-learning-in-production">
+									Machine Learning in Production
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
 
 </div>
         

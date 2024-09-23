@@ -6,8 +6,15 @@
     <description>Recent content in Algorithm on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 May 2024 11:27:22 -0700</lastBuildDate>
+    <lastBuildDate>Sat, 13 Jul 2024 01:10:32 -0700</lastBuildDate>
     <atom:link href="https://yuhaolu.github.io/categories/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hashing</title>
+      <link>https://yuhaolu.github.io/posts/algo/hashing/</link>
+      <pubDate>Sat, 13 Jul 2024 01:10:32 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/algo/hashing/</guid>
+      <description>Abstract Data Structure interface is like a contract that specifies how we can interact with the data structure - what operations we can perform on it, what inputs it expects, and what outputs we can expect.&#xA;implementation is the code that actually makes the data structure work.&#xA;Hashing Function A hash function is a function that takes an input and deterministically converts it to an integer that is less than a fixed size set by the programmer.</description>
+    </item>
     <item>
       <title>Array and Strings</title>
       <link>https://yuhaolu.github.io/posts/algo/array_n_strings/</link>

@@ -16,6 +16,13 @@
       <description>Ref: https://www.youtube.com/watch?v=b33vqX74EcA (Talk given by Mo Tiwari)&#xA;Things to know in 20s Determine what&amp;rsquo;s important On your deathbed, what do you want to say you have done? Write down your goals, and stick them on your desk Spend time with friends and family Exercise Finish your work project Everything else, cut as much as possible Profile your time You would run a profiler to see where code spends its time Profile yourself!</description>
     </item>
     <item>
+      <title>Hashing</title>
+      <link>https://yuhaolu.github.io/posts/algo/hashing/</link>
+      <pubDate>Sat, 13 Jul 2024 01:10:32 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/algo/hashing/</guid>
+      <description>Abstract Data Structure interface is like a contract that specifies how we can interact with the data structure - what operations we can perform on it, what inputs it expects, and what outputs we can expect.&#xA;implementation is the code that actually makes the data structure work.&#xA;Hashing Function A hash function is a function that takes an input and deterministically converts it to an integer that is less than a fixed size set by the programmer.</description>
+    </item>
+    <item>
       <title>RDMA Programming</title>
       <link>https://yuhaolu.github.io/posts/networks/rdma_nvidia/</link>
       <pubDate>Fri, 05 Jul 2024 16:09:21 -0700</pubDate>
@@ -24,9 +31,9 @@
     </item>
     <item>
       <title>Machine Learning</title>
-      <link>https://yuhaolu.github.io/posts/ai/ml_stanford/</link>
+      <link>https://yuhaolu.github.io/posts/cs/ml_stanford/</link>
       <pubDate>Sat, 29 Jun 2024 15:19:36 -0700</pubDate>
-      <guid>https://yuhaolu.github.io/posts/ai/ml_stanford/</guid>
+      <guid>https://yuhaolu.github.io/posts/cs/ml_stanford/</guid>
       <description>Machine Learning Ref: https://www.coursera.org/learn/machine-learning&#xA;Mimic human learning process of generating output based on specified inputs, like a turning machine&#xA;Supervised Machine Learning Regression and Classification&#xA;Linear regression logistic regression gradient descent Neural Network Problem: high training error - high bias&#xA;Solution: consider more features -&amp;gt; use larger neural network&#xA;Problem: high correlation error - high variance&#xA;Solution: cut weights of some features -&amp;gt; use more data&#xA;Understanding comes from talent &amp;amp; intelligence, Deduction comes from learning &amp;amp; experience</description>
     </item>
     <item>
@@ -41,7 +48,7 @@
       <link>https://yuhaolu.github.io/posts/about/</link>
       <pubDate>Sat, 04 May 2024 21:36:02 -0700</pubDate>
       <guid>https://yuhaolu.github.io/posts/about/</guid>
-      <description>Hello, welcome to my Blog.&#xA;I am a senior engineer at Qualcomm working on system level test of laptop processor (Snapdragon Elite X) and mobile phone chip(Snapdragon 8 Gen3).&#xA;This is a place where I note down my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&#xA;If you have any questions, feel free to reach me at:</description>
+      <description>Hello, welcome to my Blog.&#xA;I am a senior engineer at Qualcomm working on system level test of AI laptop processor and premium tier mobile phone chipsets.&#xA;This is a place where I note down my thoughts and learning process of new technologies. Most of the blog posts will focus on computing algorithms, system optimizations and communication networks.&#xA;If you have any questions, feel free to reach me at:&#xA;Email: yuhao.</description>
     </item>
   </channel>
 </rss>
