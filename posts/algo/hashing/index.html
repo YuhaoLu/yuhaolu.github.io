@@ -275,26 +275,8 @@
 						
 						
 							<li>
-								<a href="#example-2-first-repeated-character" class="nav-example-2-first-repeated-character">
-									Example 2. First Repeated Character
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#example-3-inconsecutive-number" class="nav-example-3-inconsecutive-number">
-									Example 3. Inconsecutive Number
+								<a href="#example-2-first-repeated-character-hashset" class="nav-example-2-first-repeated-character-hashset">
+									Example 2. First Repeated Character (HashSet)
 								</a>
 							</li>
 						
@@ -680,17 +662,18 @@
 <li>To limit <code>total</code> to a fixed size of x, after going through every character, <code>total % x</code> is the converted value.</li>
 </ol>
 <h2 id="comparison-with-arrays">Comparison with Arrays</h2>
-<p>An array is a ordered data structure that map value to indicte with limited size.
-A hash map is an unordered data structure that stores key-value pairs.</p>
-<p>A hash map can add and remove elements in O(1), as well as update values associated with a key and check if a key exists, also in O(1).
-The biggest disadvantage of hash maps is that for smaller input sizes, they can be slower due to overhead. Because big O ignores constants, the O(1) time complexity can sometimes be deceiving, and there can can also be <strong>collisions</strong>.</p>
+<p>An array is a <strong>ordered</strong> data structure that map value to indicte with limited size.
+A hash map is an <strong>unordered</strong> data structure that stores key-value pairs.</p>
+<p>A hash map can add and remove elements in O(1), as well as update values associated with a key and check if a key exists, also in O(1).</p>
+<p>The biggest disadvantage of hash maps is that for smaller input sizes, they can be slower due to <strong>overhead of the hash function</strong>. And there can can also be <strong>collisions</strong>.</p>
+<p>Hash tables can also <strong>take up more space</strong>. Dynamic arrays are actually fixed-size arrays that resize themselves when they go beyond their capacity. Hash tables are also implemented using a fixed size array - the size is a limit set by the programmer. The problem is, resizing a hash table is much more expensive because every existing key needs to be re-hashed, and also a hash table may use an array that is significantly larger than the number of elements stored, resulting in a huge waste of space.</p>
 <h2 id="hash-collisions">Hash Collisions</h2>
 <p>When different keys convert to the same integer, it is called a collision. Without handling collisions, older keys will get overridden and data will be lost. One ways to handle collisions is chaining.</p>
-<p>When using chaining, we store linked lists inside the hash map&rsquo;s array instead of the elements themselves. The linked list nodes store both the key and the value. If there are collisions, the collided key-value pairs are linked together in a linked list. Then, when trying to access one of these key-value pairs, we traverse through the linked list until the key matches.</p>
+<p>When using <strong>chaining</strong>, we store linked lists inside the hash map&rsquo;s array instead of the elements themselves. The linked list nodes store both the key and the value. If there are collisions, the collided key-value pairs are linked together in a linked list. Then, when trying to access one of these key-value pairs, we traverse through the linked list until the key matches.</p>
 <p>Collisions are problematic because handling them is necessary, and handling them takes time, slowing down the overall speed and efficiency of the hash map.
-How can we design our hash map to minimize collisions? The most important thing is that the size of your hash table&rsquo;s array and modulus is a prime number.
-If the constant used in the hash, and the number of buckets, are coprime, then collisions are minimised in some common cases.
-Prime numbers near significant magnitudes that are common to use are:</p>
+<strong>How can we design our hash map to minimize collisions?</strong> The most important thing is that the <strong>size of your hash table&rsquo;s array</strong> and <strong>modulus is a prime number</strong>.
+If the constant used in the hash, and the number of buckets, are coprime, then collisions are minimised in some common cases.</p>
+<p>Prime numbers near significant magnitudes that are common to use are:</p>
 <ul>
 <li>10,007</li>
 <li>1,000,003</li>
@@ -701,63 +684,66 @@ Prime numbers near significant magnitudes that are common to use are:</p>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;iostream&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#include&lt;unordered_map&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>unordered_map;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
-</span></span><span style="display:flex;"><span>
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>unordered_map;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">hashmap_example</span>() {
 </span></span><span style="display:flex;"><span>    unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> hashMap;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// If you want to initialize it with some key value pairs, use the following syntax:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// initialize hashMap with key value pairs
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> hashMap <span style="color:#f92672">=</span> {{<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>}, {<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">3</span>}, {<span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">2</span>}};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Checking if a key exists: use the following syntax:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Checking if a key exists
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap.find(<span style="color:#ae81ff">9</span>) <span style="color:#f92672">!=</span> hashMap.end(); <span style="color:#75715e">// true
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap.find(<span style="color:#ae81ff">1</span>) <span style="color:#f92672">!=</span> hashMap.end(); <span style="color:#75715e">// false
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Accessing a value given a key: use square brackets, similar to an array.
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Accessing a value given a key
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap[<span style="color:#ae81ff">5</span>]; <span style="color:#75715e">// 3
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Adding or updating a key: use square brackets, similar to an array.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// If the key already exists, the value will be updated
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// If the key doesn&#39;t exist yet, the key value pair will be inserted
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Adding or updating a key
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">6</span>;
 </span></span><span style="display:flex;"><span>    hashMap[<span style="color:#ae81ff">9</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deleting a key: use the .erase() method.
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Deleting a key
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap.erase(<span style="color:#ae81ff">9</span>);
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Get size
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    hashMap.size(); <span style="color:#75715e">// 3
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Iterate over the key value pairs: use the following code.
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// .first gets the key and .second gets the value.
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Iterate over the key value pairs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> [key, val]<span style="color:#f92672">:</span> hashMap) {
+</span></span><span style="display:flex;"><span>        cout <span style="color:#f92672">&lt;&lt;</span> key <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// .first gets the key and .second gets the value.
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> <span style="color:#66d9ef">const</span> <span style="color:#f92672">&amp;</span>pair: hashMap) {
 </span></span><span style="display:flex;"><span>        cout <span style="color:#f92672">&lt;&lt;</span> pair.first <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> pair.second <span style="color:#f92672">&lt;&lt;</span> endl;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> hashMap[<span style="color:#ae81ff">5</span>] <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Prints 6
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// These two lines check if a key is in the map
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> (myHashMap.find(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">!=</span> myHashMap.end()) <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Prints true (1)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> (myHashMap.find(<span style="color:#ae81ff">854</span>) <span style="color:#f92672">!=</span> myHashMap.end()) <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Prints false (0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> (hashMap.find(<span style="color:#ae81ff">5</span>) <span style="color:#f92672">!=</span> hashMap.end()) <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Prints true (1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    cout <span style="color:#f92672">&lt;&lt;</span> (hashMap.find(<span style="color:#ae81ff">854</span>) <span style="color:#f92672">!=</span> hashMap.end()) <span style="color:#f92672">&lt;&lt;</span> endl; <span style="color:#75715e">// Prints false (0)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    myHashMap[<span style="color:#ae81ff">8</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">327</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    myHashMap[<span style="color:#ae81ff">45</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">82523</span>;
+</span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> [key, val]<span style="color:#f92672">:</span> myHashMap) {
-</span></span><span style="display:flex;"><span>        cout <span style="color:#f92672">&lt;&lt;</span> key <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">&lt;&lt;</span> val <span style="color:#f92672">&lt;&lt;</span> endl;
-</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unordered_set&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>unordered_set
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> hashset_example() {
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Initialize a hashset
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    unordered_set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> mySet{<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">8</span>}; 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// add an element
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    mySet.insert(<span style="color:#ae81ff">5</span>); 
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// removes an element 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    mySet.erase(<span style="color:#ae81ff">7</span>); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">auto</span> iter <span style="color:#f92672">=</span> mySet.find(<span style="color:#ae81ff">5</span>); iter <span style="color:#f92672">!=</span> mySet.end())
+</span></span><span style="display:flex;"><span>        mySet.erase(iter); <span style="color:#75715e">// removes an element pointed to by iter
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    print(mySet);
+</span></span><span style="display:flex;"><span> 
+</span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h2 id="checking-for-existence">Checking for Existence</h2>
+<p>One of the most common applications of a hash table or set is determining if an element exists in O(1). Since an array needs O(n) to do this, using a hash map or set can improve the time complexity of an algorithm greatly, usually from O(n^2) to O(n).</p>
 <h3 id="example-1-two-sum">Example 1. Two Sum</h3>
 <p>Given an array of integers nums and an integer target, return indictes of two numbers such that they add up to target. You cannot use the same index twice.
 Example:
@@ -778,16 +764,16 @@ Output: return {0, 4}</p>
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (dict.find(complement) <span style="color:#f92672">!=</span> dict.end()) {
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> {i, dict[complement]};
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>            dict[num] <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>};
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><h3 id="example-2-first-repeated-character">Example 2. First Repeated Character</h3>
+</span></span></code></pre></div><h3 id="example-2-first-repeated-character-hashset">Example 2. First Repeated Character (HashSet)</h3>
 <p>Given a string <code>s</code>, return the first character to appear twice. It is guaranteed that the input will have a duplicate character.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;unordered_map&gt;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;unordered_set&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>unordered_set;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
@@ -797,7 +783,8 @@ Output: return {0, 4}</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> s.size(); i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> c <span style="color:#f92672">=</span> s[i];
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// for each character c, iterate again up to c to see if there is any match.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> i; j<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (s[j] <span style="color:#f92672">==</span> c) {
 </span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> c;
 </span></span><span style="display:flex;"><span>                }
@@ -816,32 +803,13 @@ Output: return {0, 4}</p>
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (seen.find(c) <span style="color:#f92672">!=</span> seen.end()) {
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> c;
 </span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>            seen.insert(c);
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39; &#39;</span>;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
-</span></span></code></pre></div><h3 id="example-3-inconsecutive-number">Example 3. Inconsecutive Number</h3>
-<p>Given an integer array nums, find all the unique numbers x in nums that satisfy the following: x + 1 is not in nums, and x - 1 is not in nums.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include&lt;unordered_map&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> std<span style="color:#f92672">::</span>unordered_set;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> findNumbers(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> ans;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Convert array into a set
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    unordered_set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> numsSet(nums.begin(), nums.end());
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> num: numsSet) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (numsSet.find(num <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> numsSet.end() <span style="color:#f92672">&amp;&amp;</span> numsSet.find(num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">==</span> numsSet.end()) {
-</span></span><span style="display:flex;"><span>            ans.push_back(num);
-</span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ans;
-</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Anytime you find your algorithm running if &hellip; in &hellip;, then consider using a hash map or set to store elements to have these operations run in O(1).</p>
 <h3 id="problem-1-is-the-sentence-a-pangram">Problem 1. Is the Sentence a Pangram?</h3>
 <p>A <strong>pangram</strong> is a sentence where every letter of the English alphabet appears at least once.
@@ -860,7 +828,7 @@ Output: false</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> checkIfPangram(string sentence) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">26</span>; i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span> currChar <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;a&#39;</span> <span style="color:#f92672">+</span> i;
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (sentence.find(currChar) <span style="color:#f92672">==</span> string<span style="color:#f92672">::</span>npos)
 </span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> false;
 </span></span><span style="display:flex;"><span>        }
@@ -870,7 +838,7 @@ Output: false</p>
 </span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Approach 2: Use Array as Counter - O(n)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">checkIfPangram</span>(string sentence) {
-</span></span><span style="display:flex;"><span>        array<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span>, <span style="color:#ae81ff">26</span><span style="color:#f92672">&gt;</span> seen{};
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">char</span><span style="color:#f92672">&gt;</span> seen;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> count <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> currChar : sentence) {
@@ -1276,7 +1244,7 @@ Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal numb
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// sequence     [0, 1, 0]
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// count    [0, -1, 0, -1]
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// if seq len = n, then count ranges from [-n, n]
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// arr saves the first index when count == arr_index - seq_size(n)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// arr saves the first index when arr_index = count + seq_size(n)
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">//          [-3, -2, -1,  0,  1,  2,  3]
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// arr      [-2, -2,  0, -1, -2, -2, -2] 
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
@@ -1301,7 +1269,7 @@ Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal numb
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div><h2 id="more-hashing-examples">More hashing examples</h2>
 <h3 id="example-1-group-anagrams">Example 1: Group Anagrams</h3>
-<p>Given an array of strings strs, group the anagrams together.<br>
+<p>Given an array of strings strs, group the anagrams together.
 For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;,&ldquo;ate&rdquo;,&ldquo;nat&rdquo;,&ldquo;bat&rdquo;], return [[&ldquo;bat&rdquo;],[&ldquo;nat&rdquo;,&ldquo;tan&rdquo;],[&ldquo;ate&rdquo;,&ldquo;eat&rdquo;,&ldquo;tea&rdquo;]].</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
@@ -1312,12 +1280,12 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span><span style="display:flex;"><span>            sort(t.begin(), t.end());
 </span></span><span style="display:flex;"><span>            groups[t].push_back(s);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        vector<span style="color:#f92672">&lt;</span>vector<span style="color:#f92672">&lt;</span>string<span style="color:#f92672">&gt;&gt;</span> ans;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> [key, val]<span style="color:#f92672">:</span> groups) {
 </span></span><span style="display:flex;"><span>            ans.push_back(val);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>};
@@ -1329,18 +1297,18 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> minimumCardPickup(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> cards) {
 </span></span><span style="display:flex;"><span>        unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> dic;
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cards.size(); i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>            dic[cards[i]].push_back(i);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> INT_MAX;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> [key, arr]<span style="color:#f92672">:</span> dic) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> arr.size() <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>; i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>                ans <span style="color:#f92672">=</span> min(ans, arr[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> arr[i] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans <span style="color:#f92672">==</span> INT_MAX <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> ans;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
@@ -1349,15 +1317,15 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">minimumCardPickup2</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> cards) {
 </span></span><span style="display:flex;"><span>        unordered_map<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> dic;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> INT_MAX;
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> cards.size(); i<span style="color:#f92672">++</span>) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (dic.find(cards[i]) <span style="color:#f92672">!=</span> dic.end()) {
 </span></span><span style="display:flex;"><span>                ans <span style="color:#f92672">=</span> min(ans, i <span style="color:#f92672">-</span> dic[cards[i]] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>          
 </span></span><span style="display:flex;"><span>            dic[cards[i]] <span style="color:#f92672">=</span> i;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans <span style="color:#f92672">==</span> INT_MAX <span style="color:#f92672">?</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> ans;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
@@ -1372,7 +1340,7 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span><span style="display:flex;"><span>            digitSum <span style="color:#f92672">+=</span> num <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span>            num <span style="color:#f92672">/=</span> <span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> digitSum;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">maximumSum</span>(vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&amp;</span> nums) {
@@ -1381,7 +1349,7 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> digitSum <span style="color:#f92672">=</span> getDigitSum(num);
 </span></span><span style="display:flex;"><span>            dic[digitSum].push_back(num);
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">auto</span> [key, curr]<span style="color:#f92672">:</span> dic) {
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (curr.size() <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>) {
@@ -1389,11 +1357,11 @@ For example, given strs = [&ldquo;eat&rdquo;,&ldquo;tea&rdquo;,&ldquo;tan&rdquo;
 </span></span><span style="display:flex;"><span>                ans <span style="color:#f92672">=</span> max(ans, curr[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">+</span> curr[<span style="color:#ae81ff">1</span>]);
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        }
-</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans;
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  
 </span></span><span style="display:flex;"><span>};
 </span></span></code></pre></div>
                     
@@ -1514,7 +1482,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 
 &copy;
 	
-	2024 Yuhao&#39;s Blog
+	2025 Yuhao&#39;s Blog
 	
 
     </div>
@@ -1684,26 +1652,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#example-2-first-repeated-character" class="nav-example-2-first-repeated-character">
-									Example 2. First Repeated Character
-								</a>
-							</li>
-						
-						
-					
-				
-			
-				
-				
-					
-						
-						
-						
-						
-						
-							<li>
-								<a href="#example-3-inconsecutive-number" class="nav-example-3-inconsecutive-number">
-									Example 3. Inconsecutive Number
+								<a href="#example-2-first-repeated-character-hashset" class="nav-example-2-first-repeated-character-hashset">
+									Example 2. First Repeated Character (HashSet)
 								</a>
 							</li>
 						
@@ -2023,7 +1973,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 
 &copy;
 	
-	2024 Yuhao&#39;s Blog
+	2025 Yuhao&#39;s Blog
 	
 </div>
             </div>

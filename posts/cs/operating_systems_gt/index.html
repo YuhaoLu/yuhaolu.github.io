@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Eraser: A Dynamic Data Race Detector for Multithreaded Programs</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Blogs
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/about">
+                    About Me
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#eraser-a-dynamic-data-race-detector-for-multithreaded-programs" class="nav-eraser-a-dynamic-data-race-detector-for-multithreaded-programs">
+									Eraser: A Dynamic Data Race Detector for Multithreaded Programs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-introduction" class="nav-1-introduction">
+									1. Introduction
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#11-definition-of-data-race" class="nav-11-definition-of-data-race">
+									1.1 Definition of Data Race
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#12-related-work" class="nav-12-related-work">
+									1.2 Related work
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#2-the--lockset-algorithm" class="nav-2-the--lockset-algorithm">
+									2. The Lockset Algorithm
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#21-improving-the-locking-discipline-to-reduce-false-alarm" class="nav-21-improving-the-locking-discipline-to-reduce-false-alarm">
+									2.1 Improving the Locking Discipline to reduce false alarm
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#3-implementing-eraser" class="nav-3-implementing-eraser">
+									3. Implementing Eraser
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Yuhao&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Yuhao&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Eraser: A Dynamic Data Race Detector for Multithreaded Programs
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2024-10-06 15:40
+                        </time>
+                        
+
+                        
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <h2 id="eraser-a-dynamic-data-race-detector-for-multithreaded-programs">Eraser: A Dynamic Data Race Detector for Multithreaded Programs</h2>
+<p>Multithreaded programming is difficult and error prone.</p>
+<p>Eraser, dynamically detecting data races in lock-based multithreded programs</p>
+<p>Eraser uses binary rewriting techiniques to monitor every shared-memory reference and verify consistent locking</p>
+<h3 id="1-introduction">1. Introduction</h3>
+<p>Debugging a multithreaded program can be difficult. Simple errors in synchronization can produce timing-dependent data races that can take weeks or months to track down.</p>
+<p>Eraser simply checks that all shared-memory accesses follow a consistent locking discipline. A locking discipline is a programming policy that ensures the absence of data races. For example, a simple locking discipline is to require that every variable shared between threads is protected by a mutual exclusion lock.</p>
+<h4 id="11-definition-of-data-race">1.1 Definition of Data Race</h4>
+<p>A data race occurs when two concurrent threads access a shared variable and when</p>
+<ul>
+<li>at least one access is a write and</li>
+<li>the threads use no explicit mechanism to prevent the accesses from being simultaneous</li>
+</ul>
+<h4 id="12-related-work">1.2 Related work</h4>
+<h5 id="121-hoares-monitor">1.2.1 Hoare&rsquo;s monitor</h5>
+<p>An early attempt to avoid data races was the concept of a <strong>monitor</strong> introduced by Hoare.</p>
+<p>A <strong>monitor</strong> is a group of shared variables together with the procedures that are allowed to access them, all bundled together with a single anonymous lock that is automatically acquired and released at the entry and exit of the procedures.</p>
+<p>The shared variables in the monitor are out of scope (i.e., invisible) outside the monitor; consequently they can be accessed only from within the monitor’s procedures, where the lock is held.</p>
+<p>Monitors are an effective way to avoid data races if all shared variables are static globals, but they do not protect against dataraces in programs with dynamically allocated shared variables, a limitation that early users found was significant.</p>
+<p>Some attempts had been made to create purely static(ex. compile-time) race detection systems that works with dynamically allocated shared data. But these approaches seem problematical since they require statically reasoning about the program&rsquo;s semantics.</p>
+<h5 id="122-lamports-happens-before">1.2.2 Lamport&rsquo;s happens-before</h5>
+<p>Most of the previous work in dynamic race detection is based on Lamport&rsquo;s happens-before relation.</p>
+<p>The happens-before order is a partial order on all events of all threads in a concurrent execution. Within any single thread, events are ordered in the order in which they occurred. Between threads, events are ordered according to the properties of the synchronization objects they access.</p>
+<pre tabindex="0"><code>T1       T2
+1        3
+2        4
+
+Excution sequence
+1 2 3 4
+1 3 2 4
+1 3 4 2
+3 1 2 4
+...
+
+T1             T2
+lock(mu)  
+v:= v + 1 (1)
+y:= y + 1 (2)
+unlock(mu)
+            lock(mu)  
+            v:= v + 1 (3)
+            y:= y + 1 (4)
+            unlock(mu) 
+
+Excution sequence
+1 2 3 4
+3 4 1 2
+</code></pre><p>If two threads both access a shared variable, and the accesses are not ordered by happens-before relation, the two accesses could have happened simultaneously, then a data race occurs.</p>
+<pre tabindex="0"><code>T1             T2
+y:= y + 1 
+lock(mu)  
+v:= v + 1 
+unlock(mu)
+            lock(mu)  
+            v:= v + 1 
+            unlock(mu) 
+            y:= y + 1 
+</code></pre><p>Tools based on happens-before have two significant draw-backs:</p>
+<ol>
+<li>they are difficult to implement efficiently because they require per-thread information about concurrent accesses to each shared memory location</li>
+<li>highly dependent on the interleaving produced by the scheduler</li>
+</ol>
+<p>If scheduler let Thread 2 go earlier than Thread #1, then there is a data race on <code>y</code>, happens-before cannot detect the error, Eraser can.</p>
+<h3 id="2-the--lockset-algorithm">2. The  Lockset Algorithm</h3>
+<p>Use Lockset algorithm to detect data races</p>
+<p>The simplest Lockset algorithms enforces the simple locking discipline that every shared variable if protected by one or more locks.</p>
+<p>Simple solution to detect which shared variable are not protected by lock:
+Check which locks consistently protect each shared variables, if none -&gt; data race</p>
+<p>For each shared variable <code>v</code>, Eraser maintains the set <code>C(v)</code> of candidate locks for <code>v</code>. A lock <code>l</code> in <code>C(v)</code> if, in the computation up to that point, every thread that has accessed <code>v</code> was holding <code>l</code> at the moment of the access.</p>
+<p>When the variable is accessed, Eraser updates <code>C(v)</code> with the intersection of <code>C(v)</code> and the set of locks held by the currect thread. This process is called lockset refinement.</p>
+<pre tabindex="0"><code>Let locks_held(t) be the set of locks held by thread t
+For each v, initialize C(v) to the set of all locks
+On each access to v by thread t
+    set C(v) := C(v) ∩ locks_held(t)     
+    if C(v) = { }, then issue a warning 
+</code></pre><h4 id="21-improving-the-locking-discipline-to-reduce-false-alarm">2.1 Improving the Locking Discipline to reduce false alarm</h4>
+<p>The simple locking discipline is too strict. There are three very common programming practices that violate the discipline, yet are free from any data races.</p>
+<ul>
+<li><strong>Initialization</strong>: Shared variables are frequently initialized without holding a lock.</li>
+<li><strong>Read-Shared Data</strong>: Some shared variables are written during initialization only and are read-only thereafter. These can be safely accessed without locks.</li>
+<li><strong>Read-Write Locks</strong>: Read-write locks allow multiple readers to access a shared variable, but allow only a single writer to do so.</li>
+</ul>
+<p>To avoid false alarms caused by these unlocked initialization writes, we delay the refinement of a location’s candidate set until after it has been initialized. Unfortunately, we have no easy way of knowing when initialization is complete. Eraser therefore considers a shared variable to be initialized when it is first accessed by a second thread.</p>
+<p>To support unlocked read-sharing for such data, we report races only after an initialized variable has become write-shared by more than one thread.</p>
+<p><img src="/images/Eraser/Eraser_state_diagram.png" alt="static"></p>
+<p>Many programs use single-writer, multiple-reader locks as well as simple locks. To accommodate this style we introduce our last refinement of the locking discipline: we require that for each variable <code>v</code>, some lock <code>m</code> protects <code>v</code>, meaning <code>m</code> is held in write mode for every write of <code>v</code>, and <code>m</code> is held in some mode (read or write) for every read of <code>v</code>.</p>
+<pre tabindex="0"><code>Let `locks_held(t)` be the set of locks held in any mode by thread `t`.
+Let `write_locks_held(t)` be the set of locks held in write mode by thread `t`.
+
+For each `v`, initialize `C(v)` to the set of all locks.  
+On each read of v by thread t,
+    set C(v) := C(v) ∩ locks_held(t);
+    if C(v) := { }, then issue a warning.
+On each write of v by thread t,
+    set C(v) := C(v) ∩ write_locks_held(t);
+    if C(v) = { }, then issue a warning.
+</code></pre><h3 id="3-implementing-eraser">3. Implementing Eraser</h3>
+<p>Eraser takes an unmodified program binary as input and adds instrumentation to produce a new binary that is functionally identical, but includes calls to the Eraser runtime to implement the Lockset algorithm.</p>
+<p>To maintain <code>C(v)</code>, Eraser instruments each load and store in the program. To maintain <code>lock_held(t)</code> for each thread <code>t</code>, Eraser instruments each call to acquire or release a lock, as well as the stubs that manage thread initialization and finalization. To initialize <code>C(v)</code> for dynamically allocated data, Eraser instruments each call to the storage allocator.</p>
+
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2024-10-06</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts">
+			&lt; Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/posts/cs/rtos/">
+			Previous &gt;<br>Operating_systems_gt
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Yuhao&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Blogs
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/about">
+                About Me
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#eraser-a-dynamic-data-race-detector-for-multithreaded-programs" class="nav-eraser-a-dynamic-data-race-detector-for-multithreaded-programs">
+									Eraser: A Dynamic Data Race Detector for Multithreaded Programs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#1-introduction" class="nav-1-introduction">
+									1. Introduction
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#11-definition-of-data-race" class="nav-11-definition-of-data-race">
+									1.1 Definition of Data Race
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#12-related-work" class="nav-12-related-work">
+									1.2 Related work
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#2-the--lockset-algorithm" class="nav-2-the--lockset-algorithm">
+									2. The Lockset Algorithm
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#21-improving-the-locking-discipline-to-reduce-false-alarm" class="nav-21-improving-the-locking-discipline-to-reduce-false-alarm">
+									2.1 Improving the Locking Discipline to reduce false alarm
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#3-implementing-eraser" class="nav-3-implementing-eraser">
+									3. Implementing Eraser
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

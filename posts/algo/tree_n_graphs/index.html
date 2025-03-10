@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html><head>
+<title>Tree and Graphs</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="Review of Tree and Graphs Data Structure">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Blogs
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/about">
+                    About Me
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#1-binary-trees" class="nav-1-binary-trees">
+									1. Binary trees
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-traversal" class="nav-2-traversal">
+									2. Traversal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#21-depth-first-search-dfs" class="nav-21-depth-first-search-dfs">
+									2.1 Depth-first search (DFS)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#ex-1maximum-depth-of-binary-tree" class="nav-ex-1maximum-depth-of-binary-tree">
+									Ex 1.Maximum Depth of Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-2-1448-count-good-nodes-in-binary-treehttpsleetcodecomproblemscount-good-nodes-in-binary-tree" class="nav-ex-2-1448-count-good-nodes-in-binary-treehttpsleetcodecomproblemscount-good-nodes-in-binary-tree">
+									Ex 2. 1448. Count Good Nodes in Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex3-100-same-treehttpsleetcodecomproblemssame-tree" class="nav-ex3-100-same-treehttpsleetcodecomproblemssame-tree">
+									Ex3. 100. Same Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex4-236-lowest-common-ancestor-of-a-binary-treehttpsleetcodecomproblemslowest-common-ancestor-of-a-binary-tree" class="nav-ex4-236-lowest-common-ancestor-of-a-binary-treehttpsleetcodecomproblemslowest-common-ancestor-of-a-binary-tree">
+									Ex4. 236. Lowest Common Ancestor of a Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="https://yuhaolu.github.io/">
+            Yuhao&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="https://yuhaolu.github.io/">
+        <div class="single-column-header-title">Yuhao&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Tree and Graphs
+                    
+                    <div class="post-subtitle">
+                        Review of Tree and Graphs Data Structure
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2024-05-11 11:27
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/algorithm">Algorithm</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/algorithm">Algorithm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/data-structure">Data Structure</a>
+                                &nbsp;
+                            
+                                <a href="/tags/c&#43;&#43;">C&#43;&#43;</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>Ref: <a href="https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms/707/traversals-trees-graphs/">https://leetcode.com/explore/interview/card/leetcodes-interview-crash-course-data-structures-and-algorithms/707/traversals-trees-graphs/</a></p>
+<h1 id="1-binary-trees">1. Binary trees</h1>
+<p>A binary tree is a collection of nodes. Every node has between 0 to 2 children, and every node except the root has exactly one parent.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    TreeNode <span style="color:#f92672">*</span>left;
+</span></span><span style="display:flex;"><span>    TreeNode <span style="color:#f92672">*</span>right;
+</span></span><span style="display:flex;"><span>    TreeNode(<span style="color:#66d9ef">int</span> val) <span style="color:#f92672">:</span> val(val), left(<span style="color:#66d9ef">nullptr</span>), right(<span style="color:#66d9ef">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>TreeNode(<span style="color:#ae81ff">3</span>);
+</span></span></code></pre></div><h1 id="2-traversal">2. Traversal</h1>
+<h2 id="21-depth-first-search-dfs">2.1 Depth-first search (DFS)</h2>
+<p>In a DFS, we prioritize depth by traversing as far down the tree as possible in one direction (until reaching a leaf node) before considering the other direction. For example, let&rsquo;s say we choose left as our priority direction. We move exclusively with node.left until the left subtree has been fully explored. Then, we explore the right subtree.</p>
+<p>Trees are named as such because they resemble real-life trees. You can think of the paths of a binary tree as branches growing from the root. DFS chooses a branch and goes as far down as possible. Once it fully explores the branch, it backtracks until it finds another unexplored branch.</p>
+<p>Because we need to backtrack up the tree after reaching the end of a branch, DFS is typically implemented using recursion, although it is also sometimes done iteratively using a stack. Here is a simple example of recursive DFS to visit every node:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs</span>(TreeNode<span style="color:#f92672">*</span> node) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    dfs(node<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    dfs(node<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The good news is that the structure for performing a DFS is very similar across all problems. It goes as follows:</p>
+<ol>
+<li>Handle the base case(s). Usually, an empty tree (node = null) is a base case.</li>
+<li>Do some logic for the current node</li>
+<li>Recursively call on the current node&rsquo;s children</li>
+<li>Return the answer</li>
+</ol>
+<p>The most important thing to understand when it comes to solving binary tree problems is that <strong>each function call solves and returns the answer to the original problem as if the subtree rooted at the current node was the input</strong>. The logic that will be done at each call (step 2) will depend on the problem.</p>
+<p>We mentioned that there are three types of DFS. Each of the three types differs only in the order that they execute steps 2/3.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//        0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       /  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      1    2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     / \    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    3   4    5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//         \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//          6
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// In preorder traversal, logic is done on the current node before moving to the children
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 0, 1, 3, 4, 6, 2, 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">preorderDfs</span>(TreeNode<span style="color:#f92672">*</span> node) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> node<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    preorderDfs(node<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    preorderDfs(node<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// For inorder traversal, we first recursively call the left child, then perform logic (print in this case) on the current node, and then recursively call the right child. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// This means no logic will be done until we reach a node without a left child since calling on the left child takes priority over performing logic.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 3, 1, 4, 6, 0, 2, 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">inorderDfs</span>(TreeNode<span style="color:#f92672">*</span> node) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    inorderDfs(node<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> node<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    inorderDfs(node<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// In postorder traversal, we recursively call on the children first and then perform logic on the current node. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// This means no logic will be done until we reach a leaf node since calling on the children takes priority over performing logic. 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// In a postorder traversal, the root is the last node where logic is done.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 3, 6, 4, 1, 5, 2, 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">postorderDfs</span>(TreeNode<span style="color:#f92672">*</span> node) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    postorderDfs(node<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>    postorderDfs(node<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> node<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="ex-1maximum-depth-of-binary-tree">Ex 1.Maximum Depth of Binary Tree</h3>
+<p>Given the root of a binary tree, find the length of the longest path from the root to a leaf.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//        .0(4).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       /       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      1(3)     2(2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     /     \      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    3(2)   4(1)   5(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        6(1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> maxDepth(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> maxDepth(root<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> maxDepth(root<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">max</span>(left, right) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>In the solution above, we are doing a postorder traversal because the logic for the current node (basically just the return statement) happens after the calls.
+we&rsquo;ll take a look at a preorder DFS implemented iteratively.</p>
+<p>To implement DFS iteratively, we need to use a stack. We don&rsquo;t have the return values to store the depths, so we will instead need to associate the current depth with each node on the stack.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * Definition for a binary tree node.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * struct TreeNode {
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     int val;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     TreeNode *left;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     TreeNode *right;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> * };
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//        .0(1).
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//       /       \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      1(2)     2(2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     /     \      \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    3(3)   4(3)   5(3)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//        6(4)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> maxDepth(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        stack<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> stack;
+</span></span><span style="display:flex;"><span>        stack.push(pair(root, <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>stack.empty()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">auto</span> [node, depth] <span style="color:#f92672">=</span> stack.top();
+</span></span><span style="display:flex;"><span>            stack.pop();
+</span></span><span style="display:flex;"><span>            ans <span style="color:#f92672">=</span> max(ans, depth);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                stack.push(pair(node<span style="color:#f92672">-&gt;</span>left, depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">-&gt;</span> right <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                stack.push(pair(node<span style="color:#f92672">-&gt;</span>right, depth <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>For space complexity, even if you are using recursion, the calls are still placed on the call stack which counts as extra space.</p>
+<p>The stack size will depend on the tree. For recursion, in the worst case it is <strong>O</strong>(<strong>n</strong>) if the tree is just a straight line, so usually, the correct answer to give for space complexity is <strong>O</strong>(<strong>n</strong>). If the tree is &ldquo;complete&rdquo; (all nodes have 0 or 2 children and each level except the last is full), then the space complexity is <strong>O</strong>(<strong>lo</strong>g<strong>n</strong>), but this is a best-case scenario.</p>
+<p>Important note regarding iterative implementations: in the code, we are adding <code>node.left</code> before <code>node.right</code>. Popping from a stack removes the most recently added element, thus we are actually visiting the right subtree first in the above code. In the recursive implementations, we visit the left subtree first. This difference is irrelevant in this problem because the only thing that matters is that we visit all nodes, regardless of order. However, it is still good to understand that when working iteratively, the visit order is opposite the insertion order.</p>
+<p>Example 2: 112. Path Sum</p>
+<p>Given the <code>root</code> of a binary tree and an integer <code>targetSum</code>, return <code>true</code> if there exists a path from the root to a leaf such that the sum of the nodes on the path is equal to <code>targetSum</code>, and return <code>false</code> otherwise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//       5(0)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      /     \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     4(5)    8(5)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    /       /    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   11(9)  13(13)  4(13)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  /     \     \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 7(20)  2(20)  1(26)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Input: root = [5,4,8,11,null,13,4,7,2,null,null,null,1], targetSum = 22
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Explanation: The root-to-leaf path with the target sum is shown.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//      1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    /   \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   2     3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Input: root = [1,2,3], targetSum = 5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Explanation: There are two root-to-leaf paths in the tree:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// (1 --&gt; 2): The sum is 3.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// (1 --&gt; 3): The sum is 4.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// There is no root-to-leaf path with sum = 5.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> target;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">hasPathSum</span>(TreeNode<span style="color:#f92672">*</span> root, <span style="color:#66d9ef">int</span> targetSum) {
+</span></span><span style="display:flex;"><span>        target <span style="color:#f92672">=</span> targetSum;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> dfs(root, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// keep an integer curr that represents the accumulated sum of the node of its ancestors, we can check this value against targetSum when we find a leaf.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">bool</span> <span style="color:#a6e22e">dfs</span>(TreeNode<span style="color:#f92672">*</span> node, <span style="color:#66d9ef">int</span> curr) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// if we have an empty tree, we can&#39;t have a path as there are no nodes,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// If we are at a leaf node
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> node<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (curr <span style="color:#f92672">+</span> node<span style="color:#f92672">-&gt;</span>val) <span style="color:#f92672">==</span> target;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// if we are not at a leaf, we could either continue down the left path or the right path. We only need one path to equal targetSum, so return true if either works.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        curr <span style="color:#f92672">+=</span> node<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> left <span style="color:#f92672">=</span> dfs(node<span style="color:#f92672">-&gt;</span>left, curr);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> right <span style="color:#f92672">=</span> dfs(node<span style="color:#f92672">-&gt;</span>right, curr);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> left <span style="color:#f92672">||</span> right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Iterative approach 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span> 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> hasPathSum(TreeNode<span style="color:#f92672">*</span> root, <span style="color:#66d9ef">int</span> targetSum) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        stack<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*</span>, <span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> stack;
+</span></span><span style="display:flex;"><span>        stack.push(pair(root, <span style="color:#ae81ff">0</span>));
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>stack.empty()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">auto</span> [node, curr] <span style="color:#f92672">=</span> stack.top();
+</span></span><span style="display:flex;"><span>            stack.pop();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> node<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (curr <span style="color:#f92672">+</span> node<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">==</span> targetSum) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            curr <span style="color:#f92672">+=</span> node<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                stack.push(pair(node<span style="color:#f92672">-&gt;</span>left, curr));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>right <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                stack.push(pair(node<span style="color:#f92672">-&gt;</span>right, curr));
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Again, the time and space complexity are both O(n)</p>
+<h3 id="ex-2-1448-count-good-nodes-in-binary-treehttpsleetcodecomproblemscount-good-nodes-in-binary-tree">Ex 2. <a href="https://leetcode.com/problems/count-good-nodes-in-binary-tree/">1448. Count Good Nodes in Binary Tree</a></h3>
+<p>Given the <code>root</code> of a binary tree, find the number of nodes that are  <strong>good</strong> . A node is good if the path between the root and the node has no nodes with a greater value.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">//      3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     / \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    1   4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   /   /  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  3   1    5
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Input: root = [3,1,4,3,null,1,5]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Explanation: 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Root Node (3) is always a good node.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Node 4 -&gt; (3,4) is the maximum value in the path starting from the root.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Node 5 -&gt; (3,4,5) is the maximum value in the path
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Node 3 -&gt; (3,1,3) is the maximum value in the path.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      3(g)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     /    \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    1      4(g)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   /      /    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  3(g)   1     5(g)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      3(-inf,4)    (maxSofar, return)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//     /         \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    1(3,1)      4(3,2)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   /           /    \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//  3(3,1)     1(4,0)  5(4,1)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> goodNodes(TreeNode<span style="color:#f92672">*</span> root) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">dfs</span>(root, INT_MIN);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">dfs</span>(TreeNode<span style="color:#f92672">*</span> node, <span style="color:#66d9ef">int</span> maxSoFar) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (node <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> left <span style="color:#f92672">=</span> dfs(node<span style="color:#f92672">-&gt;</span>left, max(maxSoFar, node<span style="color:#f92672">-&gt;</span>val));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> right <span style="color:#f92672">=</span> dfs(node<span style="color:#f92672">-&gt;</span>right, max(maxSoFar, node<span style="color:#f92672">-&gt;</span>val));
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> left <span style="color:#f92672">+</span> right;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (node<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&gt;=</span> maxSoFar) {
+</span></span><span style="display:flex;"><span>            ans<span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> ans;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="ex3-100-same-treehttpsleetcodecomproblemssame-tree">Ex3. <a href="https://leetcode.com/problems/same-tree/">100. Same Tree</a></h3>
+<p>Given the roots of two binary trees <code>p</code> and <code>q</code>, check if they are the same tree. Two binary trees are the same tree if they are structurally identical and the nodes have the same values</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// Example 1:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      1           1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    /   \        /  \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   2     3      2    3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Input: p = [1,2,3], q = [1,2,3]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: true
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Example 2:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//      1         1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//    /             \ 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   2               2
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Input: p = [1,2], q = [1,null,2]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Output: false
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> isSameTree(TreeNode<span style="color:#f92672">*</span> p, TreeNode<span style="color:#f92672">*</span> q) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> q <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">||</span> q <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (p<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">!=</span> q<span style="color:#f92672">-&gt;</span>val) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> left <span style="color:#f92672">=</span> isSameTree(p<span style="color:#f92672">-&gt;</span>left, q<span style="color:#f92672">-&gt;</span>left);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bool</span> right <span style="color:#f92672">=</span> isSameTree(p<span style="color:#f92672">-&gt;</span>right, q<span style="color:#f92672">-&gt;</span>right);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> left <span style="color:#f92672">&amp;&amp;</span> right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Iterative method
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> isSameTree(TreeNode<span style="color:#f92672">*</span> p, TreeNode<span style="color:#f92672">*</span> q) {
+</span></span><span style="display:flex;"><span>        stack<span style="color:#f92672">&lt;</span>pair<span style="color:#f92672">&lt;</span>TreeNode<span style="color:#f92672">*</span>, TreeNode<span style="color:#f92672">*&gt;&gt;</span> stack;
+</span></span><span style="display:flex;"><span>        stack.push(pair(p, q));
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (<span style="color:#f92672">!</span>stack.empty()) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">auto</span> [p, q] <span style="color:#f92672">=</span> stack.top();
+</span></span><span style="display:flex;"><span>            stack.pop();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> q <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">||</span> q <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (p<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">!=</span> q<span style="color:#f92672">-&gt;</span>val) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>            stack.push(pair(p<span style="color:#f92672">-&gt;</span>left, q<span style="color:#f92672">-&gt;</span>left));
+</span></span><span style="display:flex;"><span>            stack.push(pair(p<span style="color:#f92672">-&gt;</span>right, q<span style="color:#f92672">-&gt;</span>right));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="ex4-236-lowest-common-ancestor-of-a-binary-treehttpsleetcodecomproblemslowest-common-ancestor-of-a-binary-tree">Ex4. <a href="https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. Lowest Common Ancestor of a Binary Tree</a></h3>
+<p>Given the <code>root</code> of a binary tree and two nodes <code>p</code> and <code>q</code> that are in the tree, return the <strong>lowest common ancestor (LCA)</strong> of the two nodes.</p>
+<p>The LCA is the lowest node in the tree that has both <code>p</code> and <code>q</code> as descendants (note: a node is a descendant of itself).</p>
+<p>Example 1:
+3(LCA)
+/       <br>
+5(p)      1(q)
+/   \     /   <br>
+6     2   0     8
+/ \
+7   4
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+Output: 3
+Explanation: The LCA of nodes 5 and 1 is 3.</p>
+<p>Example 2:
+&hellip;3&hellip;.
+/         <br>
+5(p,LCA)    1
+/   \       /  <br>
+6     2     0    8
+/ \
+7   4(q)
+Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+Output: 5
+Explanation: The LCA of nodes 5 and 4 is 5, since a node can be a descendant of itself according to the LCA definition.</p>
+<p>What is the base case? If we have an empty tree, then no LCA exists - return null.</p>
+<p>Otherwise, how can we tell if a node is the LCA? Let&rsquo;s say that we are at the root, then there are 3 possibilities.</p>
+<ol>
+<li>The root node is p or q. The answer cannot be below the root node, because then it would be missing the root (which is either p or q) as a descendant.</li>
+</ol>
+<pre tabindex="0"><code>    /
+   p
+ /   \
+x     x
+       \
+        x
+</code></pre><ol start="2">
+<li>One of p or q is in the left subtree, and the other one is in the right subtree. The root must be the answer because it is the connection point between the two subtrees, and thus the lowest node to have both p and q as descendants.</li>
+</ol>
+<pre tabindex="0"><code>    /
+   r
+ /   \
+p     x
+       \
+        q
+</code></pre><ol start="3">
+<li>Both p and q are in one of the subtrees. In that case, the root is not the answer because we could look inside the subtree and find a &ldquo;lower&rdquo; node.</li>
+</ol>
+<pre tabindex="0"><code>        /
+       r
+     /   \
+    x     x
+   / \     \
+  p   x     x
+       \
+        q
+</code></pre><pre tabindex="0"><code>     ...3...
+   /        \
+  5          1
+ /  \       /  \
+6    2     0    8 
+    / \ 
+   7   4
+
+Targets:
+6, 2
+1, 8
+7, 0
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    TreeNode<span style="color:#f92672">*</span> lowestCommonAncestor(TreeNode<span style="color:#f92672">*</span> root, TreeNode<span style="color:#f92672">*</span> p, TreeNode<span style="color:#f92672">*</span> q) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 0. We should return null for a subtree that contains neither p nor q.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(root <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 1. a call to a subtree returns a non-null value only if one of p or q is in that subtree.         
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (root <span style="color:#f92672">==</span> p <span style="color:#f92672">||</span> root <span style="color:#f92672">==</span> q) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> root;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        TreeNode<span style="color:#f92672">*</span> left <span style="color:#f92672">=</span> lowestCommonAncestor(root<span style="color:#f92672">-&gt;</span>left, p, q);
+</span></span><span style="display:flex;"><span>        TreeNode<span style="color:#f92672">*</span> right <span style="color:#f92672">=</span> lowestCommonAncestor(root<span style="color:#f92672">-&gt;</span>right, p, q);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 2. if both calls to the left and right subtrees return something non-null,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span>(left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> right <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> root;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 3. if only one of the calls returns something.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (left <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> left;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> right;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2024-05-11</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/posts/algo/array_n_strings/">
+			&lt; Next<br>Array and Strings
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/posts/about/">
+			Previous &gt;<br>About Me
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="https://yuhaolu.github.io/">
+    
+        <div class="nav-title">
+            Yuhao&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Blogs
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/about">
+                About Me
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2025 Yuhao&#39;s Blog
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#1-binary-trees" class="nav-1-binary-trees">
+									1. Binary trees
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#2-traversal" class="nav-2-traversal">
+									2. Traversal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#21-depth-first-search-dfs" class="nav-21-depth-first-search-dfs">
+									2.1 Depth-first search (DFS)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#ex-1maximum-depth-of-binary-tree" class="nav-ex-1maximum-depth-of-binary-tree">
+									Ex 1.Maximum Depth of Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-2-1448-count-good-nodes-in-binary-treehttpsleetcodecomproblemscount-good-nodes-in-binary-tree" class="nav-ex-2-1448-count-good-nodes-in-binary-treehttpsleetcodecomproblemscount-good-nodes-in-binary-tree">
+									Ex 2. 1448. Count Good Nodes in Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex3-100-same-treehttpsleetcodecomproblemssame-tree" class="nav-ex3-100-same-treehttpsleetcodecomproblemssame-tree">
+									Ex3. 100. Same Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex4-236-lowest-common-ancestor-of-a-binary-treehttpsleetcodecomproblemslowest-common-ancestor-of-a-binary-tree" class="nav-ex4-236-lowest-common-ancestor-of-a-binary-treehttpsleetcodecomproblemslowest-common-ancestor-of-a-binary-tree">
+									Ex4. 236. Lowest Common Ancestor of a Binary Tree
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2025 Yuhao&#39;s Blog
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

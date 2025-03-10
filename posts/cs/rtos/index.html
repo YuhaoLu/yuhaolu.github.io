@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Cryptography_stanford</title>
+<title>Operating_systems_gt</title>
 
 
 
@@ -135,6 +135,24 @@
 						
 						
 						
+						
+							<li>
+								<a href="#week-1" class="nav-week-1">
+									Week 1
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
 							
 								
 									<ul>
@@ -143,8 +161,32 @@
 						
 						
 							<li>
-								<a href="#crytography-is-everywhere" class="nav-crytography-is-everywhere">
-									Crytography is everywhere
+								<a href="#eraser-a-dynamic-data-race-detector-for-multithreaded-programs" class="nav-eraser-a-dynamic-data-race-detector-for-multithreaded-programs">
+									Eraser: A Dynamic Data Race Detector for Multithreaded Programs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#11-definitions" class="nav-11-definitions">
+									1.1 Definitions
 								</a>
 							</li>
 						
@@ -161,8 +203,8 @@
 						
 						
 							<li>
-								<a href="#secure-communication" class="nav-secure-communication">
-									Secure communication
+								<a href="#12-related-work" class="nav-12-related-work">
+									1.2 Related work
 								</a>
 							</li>
 						
@@ -223,12 +265,12 @@
                 
             >
                 <div class="post-title">
-                    Cryptography_stanford
+                    Operating_systems_gt
                     
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2024-09-01 18:00
+                            2024-10-06 15:40
                         </time>
                         
 
@@ -244,32 +286,32 @@
                 
                 <div class="post-body" v-pre>
                 
-                    <h2 id="crytography-is-everywhere">Crytography is everywhere</h2>
-<p>Secure communication:</p>
+                    <h1 id="week-1">Week 1</h1>
+<h2 id="eraser-a-dynamic-data-race-detector-for-multithreaded-programs">Eraser: A Dynamic Data Race Detector for Multithreaded Programs</h2>
+<p>Multithreaded programming is difficult and error prone.</p>
+<p>Eraser, dynamically detecting data races in lock-based multithreded programs</p>
+<p>Eraser uses binary rewriting techiniques to monitor every shared-memory reference and verify consistent locking</p>
+<p>Debugging a multithreaded program can be difficult. Simple errors in synchronization can produce timing-dependent data races that can take weeks or months to track down.</p>
+<p>Eraser simply checks that all shared-memory accesses follow a consistent locking discipline. A locking discipline is a programming policy that ensures the absence of data races. For example, a simple locking discipline is to require that every variable shared between threads is protected by a mutual exclusion lock.</p>
+<p>Lockset Algorithm</p>
+<h3 id="11-definitions">1.1 Definitions</h3>
+<p>A data race occurs when two concurrent threads access a shared variable and when</p>
 <ul>
-<li>web traffic: HTTPS</li>
-<li>wireless traffic: 802.11i WPA2, GSM, Bluetooth</li>
+<li>at least one access is a write and</li>
+<li>the threads use no explicit mechanism to prevent the accesses from being simultaneous</li>
 </ul>
-<p>Encrypting files on disk: EFS, TrueCrypt</p>
-<p>Content protection(e.g. DVD, Blu-ray): CSS, AACS</p>
-<p>User authentication</p>
-<p>and much more&hellip;</p>
-<h2 id="secure-communication">Secure communication</h2>
-<pre tabindex="0"><code>                    HTTP
-(Alice)            SSL/TLS     (Bob)
-Web Browser &lt;----------------&gt; Server
-             no eavesdropping
-             no tampering
-</code></pre><p>Secure Sockets Layer/ TLS</p>
-<ol>
-<li>Handshake Protocol: Establish shared secret key using public-key cryptography</li>
-<li>Record Layer: Transmit data using shared secret key
-Ensure confidentiality and integrity</li>
-</ol>
+<h3 id="12-related-work">1.2 Related work</h3>
+<p>An early attempt to avoid data races was the concept of a <strong>monitor</strong> introduced by Hoare.</p>
+<p>A <strong>monitor</strong> is a group of shared variables together with the procedures that are allowed to access them, all bundled together with a single anonymous lock that is automatically acquired and released at the entry and exit of the procedures.</p>
+<p>The shared variables in the monitor are out of scope (i.e., invisible) outside the monitor; consequently they can be accessed only from within the monitor’s procedures, where the lock is held.</p>
+<p>Monitors are an effective way to avoid data races if all shared variables are static globals, but they do not protect against dataraces in programs with dynamically allocated shared variables, a limitation that early users found was significant.</p>
+<p>Some attempts had been made to create purely static(ex. compile-time) race detection systems that works with dynamically allocated shared data. But these approaches seem problematical since they require statically reasoning about the program&rsquo;s semantics.</p>
+<p>Most previous work is based on <em>Lamport&rsquo;s</em> happens-before relation.</p>
+<p>The happens-before order is a partial order on all events of all threads ina concurrent execution. Within any single thread, events are ordered in the order in which they occurred. Between threads, events are ordered according to the properties of the synchronization objects they access.</p>
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2024-09-01</p>
+		    <p style="color:#777;">Last modified on 2024-10-06</p>
                     
                 </div>
             </div>
@@ -278,14 +320,14 @@ Ensure confidentiality and integrity</li>
             <nav class="post-pagination">
 
                 
-                <a class="newer-posts" href="/posts/algo/linked_lists/">
-			&lt; Next<br>Linked_lists
+                <a class="newer-posts" href="/posts/cs/os_eraser/">
+			&lt; Next<br>Eraser: A Dynamic Data Race Detector for Multithreaded Programs
                 </a>
                 
                 
                 
-                <a class="older-posts" href="/posts/cs/compilers_stanford/">
-			Previous &gt;<br>Compilers
+                <a class="older-posts" href="/posts/algo/linked_lists/">
+			Previous &gt;<br>Linked_lists
                 </a>
                 
             </nav>
@@ -415,6 +457,24 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 						
+						
+							<li>
+								<a href="#week-1" class="nav-week-1">
+									Week 1
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
 							
 								
 									<ul>
@@ -423,8 +483,32 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#crytography-is-everywhere" class="nav-crytography-is-everywhere">
-									Crytography is everywhere
+								<a href="#eraser-a-dynamic-data-race-detector-for-multithreaded-programs" class="nav-eraser-a-dynamic-data-race-detector-for-multithreaded-programs">
+									Eraser: A Dynamic Data Race Detector for Multithreaded Programs
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#11-definitions" class="nav-11-definitions">
+									1.1 Definitions
 								</a>
 							</li>
 						
@@ -441,8 +525,8 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 						
 						
 							<li>
-								<a href="#secure-communication" class="nav-secure-communication">
-									Secure communication
+								<a href="#12-related-work" class="nav-12-related-work">
+									1.2 Related work
 								</a>
 							</li>
 						

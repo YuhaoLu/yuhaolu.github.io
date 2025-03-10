@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<title>Linked_lists</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="Review of Linkedlists Structure">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+      <script src="/js/toc.js"></script>
+    
+    <link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+
+<link rel="stylesheet" href="/scss/dark-mode.min.cb53f1bee2b8900cb4f082afbf00175d6618f281cf9a2fe8619e3b52d20b5721.css" integrity="sha256-y1PxvuK4kAy08IKvvwAXXWYY8oHPmi/oYZ47UtILVyE=" media="screen">
+
+
+<link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Material+Icons">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div class="single-column-drawer-container" id="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Blogs
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/categories">
+                    Categories
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/about">
+                    About Me
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/index.xml">
+                    RSS Feed
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#advantage-and-disadvantages-compared-to-arrays" class="nav-advantage-and-disadvantages-compared-to-arrays">
+									Advantage and Disadvantages compared to Arrays
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#linked-list-operations" class="nav-linked-list-operations">
+									Linked List Operations
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#traversal" class="nav-traversal">
+									Traversal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#linked-list-type" class="nav-linked-list-type">
+									Linked List Type
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#singly-linked-list" class="nav-singly-linked-list">
+									Singly linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#doubly-linked-list" class="nav-doubly-linked-list">
+									Doubly linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#linked-lists-with-sentinel-nodes" class="nav-linked-lists-with-sentinel-nodes">
+									Linked lists with sentinel nodes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#dummy-current-pointers" class="nav-dummy-current-pointers">
+									Dummy current pointers
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#fast-and-slow-pointers-chasing-2-pointers" class="nav-fast-and-slow-pointers-chasing-2-pointers">
+									Fast and Slow pointers (Chasing 2 pointers)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#ex-1-get-middle-node" class="nav-ex-1-get-middle-node">
+									Ex 1. Get middle node
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-2-linked-list-cycle" class="nav-ex-2-linked-list-cycle">
+									Ex 2. Linked List Cycle
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-3-get-kth-node-from-the-end" class="nav-ex-3-get-kth-node-from-the-end">
+									Ex 3. Get kth node from the end
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#prob-1-remove-duplicate-nodes" class="nav-prob-1-remove-duplicate-nodes">
+									Prob 1. Remove duplicate nodes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#prob-2-reversing-a-linked-list" class="nav-prob-2-reversing-a-linked-list">
+									Prob 2. Reversing a linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div id="drawer-mask" v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav id="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div id="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+            Yuhao&#39;s Blog
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" id="darkModeToggleButton2">
+            <i class="material-icons" id="darkModeToggleIcon2">
+                dark_mode
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" id="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="http://localhost:1313/">
+        <div class="single-column-header-title">Yuhao&#39;s Blog</div>
+        
+
+    </a>
+</div>
+
+            <div id="content">
+                <div id="streamContainer" class="stream-container">
+
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    Linked_lists
+                    
+                    <div class="post-subtitle">
+                        Review of Linkedlists Structure
+                    </div>
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2024-09-28 18:39
+                        </time>
+                        
+
+                        
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/algorithm">Algorithm</a>
+                                &nbsp;
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/algorithm">Algorithm</a>
+                                &nbsp;
+                            
+                                <a href="/tags/data-structure">Data Structure</a>
+                                &nbsp;
+                            
+                                <a href="/tags/c&#43;&#43;">C&#43;&#43;</a>
+                                &nbsp;
+                            
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">LinkedListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    LinkedListNode <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// a constructor that initializes the val with the provided argument val, and sets the next pointer to nullptr
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    LinkedListNode(<span style="color:#66d9ef">int</span> val)<span style="color:#f92672">:</span> val (val), next(<span style="color:#66d9ef">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    LinkedListNode<span style="color:#f92672">*</span> one <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedListNode(<span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>    LinkedListNode<span style="color:#f92672">*</span> two <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedListNode(<span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    LinkedListNode<span style="color:#f92672">*</span> three <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedListNode(<span style="color:#ae81ff">3</span>);
+</span></span><span style="display:flex;"><span>    one<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> two;
+</span></span><span style="display:flex;"><span>    two<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> three;
+</span></span><span style="display:flex;"><span>    LinkedListNode<span style="color:#f92672">*</span> head <span style="color:#f92672">=</span> one;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> head<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>    cout <span style="color:#f92672">&lt;&lt;</span> head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">&lt;&lt;</span> endl;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="advantage-and-disadvantages-compared-to-arrays">Advantage and Disadvantages compared to Arrays</h2>
+<p>The main advantage of a linked list is that you can <strong>add and remove elements at any position in O(1)</strong>. The caveat is that you need to have a reference to a node at the position in which you want to perform the addition/removal, otherwise the operation is O(n), because you will need to iterate starting from the head until you get to the desired position. However, this is still much better than a normal (dynamic) array, which requires O(n) for adding and removing from an arbitrary position.
+The main disadvantage of a linked list is that <strong>there is no random access</strong>. while an array has O(1) indexing, a linked list could require O(n) to access an element at a given position.
+Linked lists have the advantage of <strong>not having fixed sizes</strong>. While dynamic arrays can be resized, under the hood they still are allocated a fixed size - it&rsquo;s just that when this size is exceeded, the array is resized, which is expensive. However, linked lists have more overhead than arrays - every element needs to have extra storage for the pointers. If you are only storing small items like booleans or characters, then you may be more than doubling the space needed.</p>
+<h2 id="linked-list-operations">Linked List Operations</h2>
+<h3 id="traversal">Traversal</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (head <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        ans <span style="color:#f92672">+=</span> head<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>        head <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> ans;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Traversal can also be done recursively
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (head <span style="color:#f92672">==</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> head<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">+</span> getSum(head<span style="color:#f92672">-&gt;</span>next);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="linked-list-type">Linked List Type</h2>
+<h3 id="singly-linked-list">Singly linked list</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// prevNode -&gt; nodeToAdd -&gt; nextNode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   i - 1         i          i + 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>    ListNode(<span style="color:#66d9ef">int</span> val) <span style="color:#f92672">:</span> val(val), next(<span style="color:#66d9ef">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Add an element at position i, prevNode at i-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addNode</span>(ListNode<span style="color:#f92672">*</span> prevNode, ListNode<span style="color:#f92672">*</span> nodeToAdd) {
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> prevNode<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    prevNode<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Delete an element at position i, prevNode at i-1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deleteNode</span>(ListNode<span style="color:#f92672">*</span> prevNode) {
+</span></span><span style="display:flex;"><span>    prevNode<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> prevNode<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="doubly-linked-list">Doubly linked list</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">// prevNode &lt;- nodeToAdd -&gt; nextNode
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">//   i - 1  -&gt;     i     &lt;-   i + 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">*</span>prev;
+</span></span><span style="display:flex;"><span>    ListNode(<span style="color:#66d9ef">int</span> val) <span style="color:#f92672">:</span> val(val), next(<span style="color:#66d9ef">nullptr</span>), prev(<span style="color:#66d9ef">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Let node be the node at position i
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addNode</span>(ListNode<span style="color:#f92672">*</span> node, ListNode<span style="color:#f92672">*</span> nodeToAdd) {
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> prevNode <span style="color:#f92672">=</span> node<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> node;
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> prevNode;
+</span></span><span style="display:flex;"><span>    prevNode<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>    node<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">deleteNode</span>(ListNode<span style="color:#f92672">*</span> node) {
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> prevNode <span style="color:#f92672">=</span> node<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> nextNode <span style="color:#f92672">=</span> node<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    prevNode<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nextNode;
+</span></span><span style="display:flex;"><span>    nextNode<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> prevNode;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="linked-lists-with-sentinel-nodes">Linked lists with sentinel nodes</h2>
+<p>We call the start of a linked list the <code>head</code> and the end of a linked list the <code>tail</code>.
+Sentinel nodes sit at the start and end of linked lists and are used to make operations and the code needed to execute those operations cleaner. The idea is that, even when there are no nodes in a linked list, you still keep pointers to a head and tail. The real head of the linked list is <code>head.next</code> and the real tail is <code>tail.prev</code>.</p>
+<p>The sentinel nodes also allow us to easily add and remove from the front or back of the linked list.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">ListNode</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> val;
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">*</span>next;
+</span></span><span style="display:flex;"><span>    ListNode <span style="color:#f92672">*</span>prev;
+</span></span><span style="display:flex;"><span>    ListNode(<span style="color:#66d9ef">int</span> val) <span style="color:#f92672">:</span> val(val), next(<span style="color:#66d9ef">nullptr</span>), prev(<span style="color:#66d9ef">nullptr</span>) {}
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addToEnd</span>(ListNode<span style="color:#f92672">*</span> nodeToAdd) {
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> tail;
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> tail<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>    tail<span style="color:#f92672">-&gt;</span>prev<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>    tail<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeFromEnd</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">==</span> tail) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> nodeToRemove <span style="color:#f92672">=</span> tail<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>    nodeToRemove<span style="color:#f92672">-&gt;</span>prev<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> tail;
+</span></span><span style="display:flex;"><span>    tail<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> nodeToRemove<span style="color:#f92672">-&gt;</span>prev;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addToStart</span>(ListNode<span style="color:#f92672">*</span> nodeToAdd) {
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    nodeToAdd<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nodeToAdd;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">removeFromStart</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">==</span> tail) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> nodeToRemove <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    nodeToRemove<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> nodeToRemove<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ListNode<span style="color:#f92672">*</span> head <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>ListNode<span style="color:#f92672">*</span> tail <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ListNode(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+</span></span><span style="display:flex;"><span>head<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> tail;
+</span></span><span style="display:flex;"><span>tail<span style="color:#f92672">-&gt;</span>prev <span style="color:#f92672">=</span> head;
+</span></span></code></pre></div><h2 id="dummy-current-pointers">Dummy current pointers</h2>
+<p>we usually want to keep a reference to the <code>head</code> to ensure we can always access any element.
+Sometimes, it&rsquo;s better to traverse using a &ldquo;curr&rdquo; <code>curr</code> pointer and to keep head at the head.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getSum</span>(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> ans <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> curr <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (curr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        ans <span style="color:#f92672">+=</span> curr<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>        curr <span style="color:#f92672">=</span> curr<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// same as before, but we still have a pointer at the head
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> ans;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="fast-and-slow-pointers-chasing-2-pointers">Fast and Slow pointers (Chasing 2 pointers)</h2>
+<p>For example, the &ldquo;fast&rdquo; pointer moves two nodes per iteration, whereas the &ldquo;slow&rdquo; pointer moves one node per iteratio</p>
+<pre tabindex="0"><code>// head is the head node of a linked list
+function fn(head):
+    slow = head
+    fast = head
+
+    // check if fast.next exist
+    while fast and fast.next:
+        Do something here
+        slow = slow.next
+        fast = fast.next.next
+</code></pre><h3 id="ex-1-get-middle-node">Ex 1. Get middle node</h3>
+<p>Given the head of a linked list with an odd number of nodes head, return the value of the node in the middle.
+For example, given a linked list that represents 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5, return 3.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getMiddle</span>(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> slow <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> fast <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> slow<span style="color:#f92672">-&gt;</span>val;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 -&gt; null, which number it returns?</p>
+<h3 id="ex-2-linked-list-cycle">Ex 2. Linked List Cycle</h3>
+<p>Given the head of a linked list, determine if the linked list has a cycle.
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer.</p>
+<p>The approach is to use a fast and slow pointer. Imagine a straight racetrack (like the one used in the 100m sprint). If two runners of significantly different speeds are racing, then the slower one will never catch up to the faster one. The faster runner finishing the race is like the fast pointer reaching the end of the linked list.</p>
+<p>But what if the runners were instead running around a circular racetrack, and needed to complete many laps? In that case, the faster runner will eventually pass (lap) the slower runner.</p>
+<p>We can apply this logic - move a fast pointer twice the speed of a slow pointer. If they ever meet (except at the start), then we know there must be a cycle.</p>
+<p>Why will the pointers always meet, and the fast pointer won&rsquo;t just &ldquo;skip&rdquo; over the slow pointer in the cycle?
+After looping around the cycle for the first time, if the fast pointer is one position behind, then the pointers will meet on the next iteration. If the fast pointer is two positions behind, then it will be one position behind on the next iteration. This pattern continues - after looping around once, the fast pointer moves exactly one step closer to the slow pointer at each iteration, so it&rsquo;s impossible for it to &ldquo;skip&rdquo; over.</p>
+<p>Sol 1: fast and slow pointers</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> hasCycle(ListNode <span style="color:#f92672">*</span>head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#f92672">*</span> slow <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#f92672">*</span> fast <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span> <span style="color:#f92672">&amp;&amp;</span> fast<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (slow <span style="color:#f92672">==</span> fast) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Time Complexity: O(1)
+Space complexity: O(n)</p>
+<p>Sol 2: Hashset</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bool</span> hasCycle(ListNode <span style="color:#f92672">*</span>head) {
+</span></span><span style="display:flex;"><span>        unordered_set<span style="color:#f92672">&lt;</span>ListNode<span style="color:#f92672">*&gt;</span> seen;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (head <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (seen.find(head) <span style="color:#f92672">!=</span> seen.end()) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> true;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>            seen.insert(head);
+</span></span><span style="display:flex;"><span>            head <span style="color:#f92672">=</span> head<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> false;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Space complexity: O(n)</p>
+<h3 id="ex-3-get-kth-node-from-the-end">Ex 3. Get kth node from the end</h3>
+<p>Example 3: Given the head of a linked list and an integer k, return the kth node from the end.</p>
+<p>For example, given the linked list that represents 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 and k = 2, return the node with value 4, as it is the 2nd node from the end.</p>
+<p>If we separate the two pointers by a gap of k, and then move them at the same speed, they will always be k apart. When the fast pointer (the one further ahead) reaches the end, then the slow pointer must be at the desired node, since it is k nodes behind.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>ListNode<span style="color:#f92672">*</span> <span style="color:#a6e22e">findNode</span>(ListNode<span style="color:#f92672">*</span> head, <span style="color:#66d9ef">int</span> k) {
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> slow <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> fast <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> k; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (fast <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        slow <span style="color:#f92672">=</span> slow<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>        fast <span style="color:#f92672">=</span> fast<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> slow;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="prob-1-remove-duplicate-nodes">Prob 1. Remove duplicate nodes</h2>
+<p>Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
+Example: Input: head = [1,1,2,3,3]
+Output: [1,2,3]</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Solution</span> {
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> deleteDuplicates(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#f92672">*</span> current <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> (current <span style="color:#f92672">!=</span> NULL <span style="color:#f92672">&amp;&amp;</span> current<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">!=</span> NULL) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (current<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>val <span style="color:#f92672">==</span> current<span style="color:#f92672">-&gt;</span>val) {
+</span></span><span style="display:flex;"><span>                current<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> current<span style="color:#f92672">-&gt;</span>next<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                current <span style="color:#f92672">=</span> current<span style="color:#f92672">-&gt;</span>next;
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> head;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h2 id="prob-2-reversing-a-linked-list">Prob 2. Reversing a linked list</h2>
+<p>Imagine that we have a linked list 1 -&gt; 2 -&gt; 3 -&gt; 4, and we want to return 4 -&gt; 3 -&gt; 2 -&gt; 1.</p>
+<p>1 &lt;-2 3-&gt;4
+At any given node <code>curr</code>, we can set <code>curr.next = prev</code> to switch the direction of the arrow. Then, we can update <code>prev</code> to be <code>curr</code> in preparation for the next node. However, if we change <code>curr.next</code>, we will lose that next node. To fix this, we can use a temporary variable <code>nextNode</code> to point to the next node before changing any of the other pointers.
+prev -&gt; curr -&gt; nextNode</p>
+<p>prev &lt;- curr    nextNode</p>
+<pre><code>prev &lt;-  curr      nextNode
+</code></pre>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>ListNode<span style="color:#f92672">*</span> <span style="color:#a6e22e">reverseList</span>(ListNode<span style="color:#f92672">*</span> head) {
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> prev <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span><span style="display:flex;"><span>    ListNode<span style="color:#f92672">*</span> curr <span style="color:#f92672">=</span> head;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">while</span> (curr <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nullptr</span>) {
+</span></span><span style="display:flex;"><span>        ListNode<span style="color:#f92672">*</span> nextNode <span style="color:#f92672">=</span> curr<span style="color:#f92672">-&gt;</span>next; <span style="color:#75715e">// first, make sure we don&#39;t lose the next node
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        curr<span style="color:#f92672">-&gt;</span>next <span style="color:#f92672">=</span> prev;               <span style="color:#75715e">// reverse the direction of the pointer
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        prev <span style="color:#f92672">=</span> curr;                     <span style="color:#75715e">// set the current node to prev for the next node
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        curr <span style="color:#f92672">=</span> nextNode;                 <span style="color:#75715e">// move on
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> prev;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2024-09-28</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/posts/cs/rtos/">
+			&lt; Next<br>Operating_systems_gt
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/posts/cs/cryptography_stanford/">
+			Previous &gt;<br>Cryptography_stanford
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+                    </div>
+            </div><div id="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="http://localhost:1313/">
+    
+        <div class="nav-title">
+            Yuhao&#39;s Blog
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Blogs
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/categories">
+                Categories
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/about">
+                About Me
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/index.xml">
+                RSS Feed
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+
+    </div>
+    
+</div><div id="extraContainer" class="extra-container">
+    <div class="toc-wrapper">
+        
+
+        
+        <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#advantage-and-disadvantages-compared-to-arrays" class="nav-advantage-and-disadvantages-compared-to-arrays">
+									Advantage and Disadvantages compared to Arrays
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#linked-list-operations" class="nav-linked-list-operations">
+									Linked List Operations
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#traversal" class="nav-traversal">
+									Traversal
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#linked-list-type" class="nav-linked-list-type">
+									Linked List Type
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#singly-linked-list" class="nav-singly-linked-list">
+									Singly linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#doubly-linked-list" class="nav-doubly-linked-list">
+									Doubly linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#linked-lists-with-sentinel-nodes" class="nav-linked-lists-with-sentinel-nodes">
+									Linked lists with sentinel nodes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#dummy-current-pointers" class="nav-dummy-current-pointers">
+									Dummy current pointers
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#fast-and-slow-pointers-chasing-2-pointers" class="nav-fast-and-slow-pointers-chasing-2-pointers">
+									Fast and Slow pointers (Chasing 2 pointers)
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								
+									<ul>
+								
+							
+						
+						
+							<li>
+								<a href="#ex-1-get-middle-node" class="nav-ex-1-get-middle-node">
+									Ex 1. Get middle node
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-2-linked-list-cycle" class="nav-ex-2-linked-list-cycle">
+									Ex 2. Linked List Cycle
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#ex-3-get-kth-node-from-the-end" class="nav-ex-3-get-kth-node-from-the-end">
+									Ex 3. Get kth node from the end
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+							
+								</ul>
+							
+						
+						
+						
+							<li>
+								<a href="#prob-1-remove-duplicate-nodes" class="nav-prob-1-remove-duplicate-nodes">
+									Prob 1. Remove duplicate nodes
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#prob-2-reversing-a-linked-list" class="nav-prob-2-reversing-a-linked-list">
+									Prob 2. Reversing a linked list
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+        
+    </div>
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top"
+            :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a type="button" class="pagination-action" id="darkModeToggleButton">
+            <span class="material-icons pagination-action-icon" id="darkModeToggleIcon">
+                dark_mode
+            </span>
+        </a>
+        
+        
+    </div>
+</div>
+
+<div id="single-column-footer">
+<a href="https://linkedin.com/in/yuhao-lu-dev/">
+    <img src="/images/icons/linkedin.png" alt="Linkedin" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+<a href="https://github.com/YuhaoLu">
+    <img src="/images/icons/github.webp" alt="Github" width="22px" height="22px" style="margin-right: 8px;">
+</a>
+
+<p></p>
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> 
+<br>
+
+
+
+&copy;
+	
+	2024 Yuhao&#39;s Blog
+	
+</div>
+            </div>
+    
+    <script src="/js/journal.js"></script></body>
+</html>

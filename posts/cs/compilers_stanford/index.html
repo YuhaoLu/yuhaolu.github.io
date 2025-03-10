@@ -296,23 +296,66 @@ Program + Data -&gt; Interpreter -&gt; Output
 <ul>
 <li>Recognize words</li>
 <li>Devides program text into &ldquo;words&rdquo; or &ldquo;tokens&rdquo;</li>
+<li>ex.
+<pre tabindex="0"><code>&#34;Is this a sentence&#34;
+&#34;if x == y then z = 1; else z = 2;&#34;
+</code></pre></li>
 </ul>
 </li>
 <li>Parsing (Syntactic)
 <ul>
 <li>Understand sentence structure</li>
 <li>Diagramming Sentences into a tree</li>
+<li>ex.
+<pre tabindex="0"><code>&#34;This   line  is      a   longer  sentence&#34;
+article none verb article   adj.    noun 
+\.subject./            \....object..../   
+       \.......sentence......./
+
+
+if x == y then z = 1; else z = 2;
+    \ | /        |           |
+  relation    assign      assign
+      |          |           |
+  predict    then-stmt   else-stmt
+      \           |         /
+        ....if-then-else....
+</code></pre></li>
 </ul>
 </li>
 <li>Semantic Analysis (Types, Scope)
 <ul>
 <li>Try to understand the meaning(This is hard!)</li>
+<li>ex.
+<pre tabindex="0"><code>Jack said Jerry left his assignment at home.
+                      |
+                    whose?
+Jack said Jack left his assignment at home?
+
+//Programming languages define strict rules to avoid such ambiguities
+{
+    int Jack = 3;
+    {
+        int Jack = 4;
+        count &lt;&lt; Jack;
+    }
+}
+</code></pre></li>
 <li>Perform semantic checks to catch inconsistencies</li>
+<li>ex.
+<pre tabindex="0"><code>Jack left her homework at home.
+// A &#34;type mismatch&#34; between her and Jack; we know they are different people.
+</code></pre></li>
 </ul>
 </li>
 <li>Optimization
 <ul>
 <li>Like &ldquo;editing&rdquo;</li>
+<li>ex.
+<pre tabindex="0"><code>But a little bit like editing
+    ------------
+      akin to
+</code></pre></li>
 <li>Automatically modify program so that they run faster and use less memory</li>
 </ul>
 </li>
@@ -323,7 +366,12 @@ Program + Data -&gt; Interpreter -&gt; Output
 </ul>
 </li>
 </ol>
-<h2 id="the-economy-of-programming-languages">The Economy of Programming Languages</h2>
+<p>The overall structure of almost every comiler adheres to this outline.<br>
+The proportions have changed since FORTRAN.</p>
+<pre tabindex="0"><code>| -- L -- | -- P -- | S | -- O -- | - CG -|
+
+| L | P | -- S -- | ------ O ------| CG |
+</code></pre><h2 id="the-economy-of-programming-languages">The Economy of Programming Languages</h2>
 <p>Q: Why are there so many programming languages?
 A: Application domains have distinctive/conflicting needs. It is hard to design one system for all.</p>
 <table>
@@ -441,7 +489,7 @@ class Main inherits A2I {
             )
          ).concat(&#34;\n&#34;));   
     };
-    
+  
     fact(i :Int):Int {
       if (i = 0) then 1 else i * fact(i-1) fi
     };
@@ -456,7 +504,7 @@ class Main inherits A2I {
             )
          ).concat(&#34;\n&#34;));   
     };
-    
+  
     fact(i :Int):Int {
       let fact: Int &lt;- 1 in {
          while (not (i = 0)) loop
