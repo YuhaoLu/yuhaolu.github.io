@@ -6,8 +6,15 @@
     <description>Recent content in Posts on Yuhao&#39;s Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Jul 2024 10:36:08 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 09 Mar 2025 15:40:03 -0700</lastBuildDate>
     <atom:link href="https://yuhaolu.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Eraser: A Dynamic Data Race Detector for Multithreaded Programs</title>
+      <link>https://yuhaolu.github.io/posts/cs/os_eraser/</link>
+      <pubDate>Sun, 09 Mar 2025 15:40:03 -0700</pubDate>
+      <guid>https://yuhaolu.github.io/posts/cs/os_eraser/</guid>
+      <description>Eraser: A Dynamic Data Race Detector for Multithreaded Programs Multithreaded programming is difficult and error prone.&#xA;Eraser, dynamically detecting data races in lock-based multithreded programs&#xA;Eraser uses binary rewriting techiniques to monitor every shared-memory reference and verify consistent locking&#xA;1. Introduction Debugging a multithreaded program can be difficult.&#xA;Timing dependences may make the bug difficult to reproduce. What is worse, the instrumentation peope insert to help them find the bugs may change the timing in such a way that the bug never shows up.</description>
+    </item>
     <item>
       <title>Efficiency Tips for Engineers</title>
       <link>https://yuhaolu.github.io/posts/misc/efficiency_tips/</link>

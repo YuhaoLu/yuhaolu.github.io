@@ -13,6 +13,227 @@
     
     
         <item>
+        <title>Eraser: A Dynamic Data Race Detector for Multithreaded Programs</title>
+        <link>https://yuhaolu.github.io/posts/cs/os_eraser/</link>
+        <pubDate>Sun, 09 Mar 2025 15:40:03 -0700</pubDate>
+        
+        <guid>https://yuhaolu.github.io/posts/cs/os_eraser/</guid>
+        <description>Yuhao&#39;s Blog https://yuhaolu.github.io/posts/cs/os_eraser/ -&lt;h2 id=&#34;eraser-a-dynamic-data-race-detector-for-multithreaded-programs&#34;&gt;Eraser: A Dynamic Data Race Detector for Multithreaded Programs&lt;/h2&gt;
+&lt;p&gt;Multithreaded programming is difficult and error prone.&lt;/p&gt;
+&lt;p&gt;Eraser, dynamically detecting data races in lock-based multithreded programs&lt;/p&gt;
+&lt;p&gt;Eraser uses binary rewriting techiniques to monitor every shared-memory reference and verify consistent locking&lt;/p&gt;
+&lt;h3 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h3&gt;
+&lt;p&gt;Debugging a multithreaded program can be &lt;strong&gt;difficult&lt;/strong&gt;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Timing dependences&lt;/strong&gt; may make the bug difficult to reproduce. What is worse, the instrumentation peope insert to help them find the bugs may change the timing in such a way that the bug never shows up.
+ex. insert a &lt;code&gt;printf&lt;/code&gt;, the bug disappeared.&lt;/li&gt;
+&lt;li&gt;The bug is usually caused by the &lt;strong&gt;unexpected interaction of two loosely related pieces of code that are often in different modules&lt;/strong&gt;. So the person in debugging must understand the module interactions and cannot reason about the system one module at a time.
+violate modularity&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;manifestation of the bug may occur long after the execution&lt;/strong&gt; of the code contains the bug.&lt;/li&gt;
+&lt;li&gt;The code that fails may be very far away from the code containing the bug.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Eraser simply checks that all shared-memory accesses follow a consistent locking discipline. A locking discipline is a programming policy that ensures the absence of data races. For example, a simple locking discipline is to require that every variable shared between threads is protected by a mutual exclusion lock.&lt;/p&gt;
+&lt;p&gt;What was the scope of the tool?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Threads that synchronize using only mutual exclusion locks (no condition variables).&lt;/li&gt;
+&lt;li&gt;Bugs that can be detected based on dynamic execution.
+if there is a bug in a part of the program that is no executed, bug will not show up in that run.&lt;/li&gt;
+&lt;li&gt;Shared variables are either heap or global variables accessed by multiple threads.&lt;/li&gt;
+&lt;li&gt;If the programmer puts in synchronization, the granularity is assumed to be correct.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;11-definition-of-data-race&#34;&gt;1.1 Definition of Data Race&lt;/h4&gt;
+&lt;p&gt;A data race occurs when two concurrent threads access a shared variable and when&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;at least one access is a write and&lt;/li&gt;
+&lt;li&gt;the threads use no explicit mechanism to prevent the accesses from being simultaneous&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;12-related-work&#34;&gt;1.2 Related work&lt;/h4&gt;
+&lt;h5 id=&#34;121-hoares-monitor&#34;&gt;1.2.1 Hoare&amp;rsquo;s monitor&lt;/h5&gt;
+&lt;p&gt;An early attempt to avoid data races was the concept of a &lt;strong&gt;monitor&lt;/strong&gt; introduced by Hoare.&lt;/p&gt;
+&lt;p&gt;A &lt;strong&gt;monitor&lt;/strong&gt; is a group of shared variables together with the procedures that are allowed to access them, all bundled together with a single anonymous lock that is automatically acquired and released at the entry and exit of the procedures.&lt;/p&gt;
+&lt;p&gt;The shared variables in the monitor are out of scope (i.e., invisible) outside the monitor; consequently they can be accessed only from within the monitor’s procedures, where the lock is held.&lt;/p&gt;
+&lt;p&gt;Monitors are an effective way to avoid data races if all shared variables are static globals, but they do not protect against dataraces in programs with dynamically allocated shared variables, a limitation that early users found was significant.&lt;/p&gt;
+&lt;p&gt;Some attempts had been made to create purely static(ex. compile-time) race detection systems that works with dynamically allocated shared data. But these approaches seem problematical since they require statically reasoning about the program&amp;rsquo;s semantics.&lt;/p&gt;
+&lt;h5 id=&#34;122-lamports-happens-before&#34;&gt;1.2.2 Lamport&amp;rsquo;s happens-before&lt;/h5&gt;
+&lt;p&gt;Most of the previous work in dynamic race detection is based on Lamport&amp;rsquo;s happens-before relation.&lt;/p&gt;
+&lt;p&gt;The happens-before order is a partial order on all events of all threads in a concurrent execution. Within any single thread, events are ordered in the order in which they occurred. Between threads, events are ordered according to the properties of the synchronization objects they access.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;T1       T2
+1        3
+2        4
+
+Excution sequence
+1 2 3 4
+1 3 2 4
+1 3 4 2
+3 1 2 4
+...
+
+T1             T2
+lock(mu)  
+v:= v + 1 (1)
+y:= y + 1 (2)
+unlock(mu)
+            lock(mu)  
+            v:= v + 1 (3)
+            y:= y + 1 (4)
+            unlock(mu) 
+
+Excution sequence
+1 2 3 4
+3 4 1 2
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;If two threads both access a shared variable, and the accesses are not ordered by happens-before relation, the two accesses could have happened simultaneously, then a data race occurs.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;T1             T2
+y:= y + 1 
+lock(mu)  
+v:= v + 1 
+unlock(mu)
+            lock(mu)  
+            v:= v + 1 
+            unlock(mu) 
+            y:= y + 1 
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Tools based on happens-before have two significant draw-backs:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;they are difficult to implement efficiently because they require per-thread information about concurrent accesses to each shared memory location&lt;/li&gt;
+&lt;li&gt;highly dependent on the interleaving produced by the scheduler&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If scheduler let Thread 2 go earlier than Thread #1, then there is a data race on &lt;code&gt;y&lt;/code&gt;, happens-before cannot detect the error, Eraser can.&lt;/p&gt;
+&lt;h3 id=&#34;2-the--lockset-algorithm&#34;&gt;2. The  Lockset Algorithm&lt;/h3&gt;
+&lt;p&gt;Use Lockset algorithm to detect data races&lt;/p&gt;
+&lt;p&gt;The simplest Lockset algorithms enforces the simple locking discipline that every shared variable if protected by one or more locks.&lt;/p&gt;
+&lt;p&gt;Simple solution to detect which shared variable are not protected by lock:
+Check which locks consistently protect each shared variables, if none -&amp;gt; data race&lt;/p&gt;
+&lt;p&gt;For each shared variable &lt;code&gt;v&lt;/code&gt;, Eraser maintains the set &lt;code&gt;C(v)&lt;/code&gt; of candidate locks for &lt;code&gt;v&lt;/code&gt;. A lock &lt;code&gt;l&lt;/code&gt; in &lt;code&gt;C(v)&lt;/code&gt; if, in the computation up to that point, every thread that has accessed &lt;code&gt;v&lt;/code&gt; was holding &lt;code&gt;l&lt;/code&gt; at the moment of the access.&lt;/p&gt;
+&lt;p&gt;When the variable is accessed, Eraser updates &lt;code&gt;C(v)&lt;/code&gt; with the intersection of &lt;code&gt;C(v)&lt;/code&gt; and the set of locks held by the currect thread. This process is called lockset refinement.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Let locks_held(t) be the set of locks held by thread t
+For each v, initialize C(v) to the set of all locks
+On each access to v by thread t
+    set C(v) := C(v) ∩ locks_held(t)   
+    if C(v) = { }, then issue a warning 
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;21-improving-the-locking-discipline-to-reduce-false-alarm&#34;&gt;2.1 Improving the Locking Discipline to reduce false alarm&lt;/h4&gt;
+&lt;p&gt;The simple locking discipline is too strict. There are three very common programming practices that violate the discipline, yet are free from any data races.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Initialization&lt;/strong&gt;: Shared variables are frequently initialized without holding a lock.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Read-Shared Data&lt;/strong&gt;: Some shared variables are written during initialization only and are read-only thereafter. These can be safely accessed without locks.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Read-Write Locks&lt;/strong&gt;: Read-write locks allow multiple readers to access a shared variable, but allow only a single writer to do so.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To avoid false alarms caused by these unlocked initialization writes, we delay the refinement of a location’s candidate set until after it has been initialized. Unfortunately, we have no easy way of knowing when initialization is complete. Eraser therefore considers a shared variable to be initialized when it is first accessed by a second thread.&lt;/p&gt;
+&lt;p&gt;To support unlocked read-sharing for such data, we report races only after an initialized variable has become write-shared by more than one thread.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/Eraser/Eraser_state_diagram.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Many programs use single-writer, multiple-reader locks as well as simple locks. To accommodate this style we introduce our last refinement of the locking discipline: we require that for each variable &lt;code&gt;v&lt;/code&gt;, some lock &lt;code&gt;m&lt;/code&gt; protects &lt;code&gt;v&lt;/code&gt;, meaning &lt;code&gt;m&lt;/code&gt; is held in write mode for every write of &lt;code&gt;v&lt;/code&gt;, and &lt;code&gt;m&lt;/code&gt; is held in some mode (read or write) for every read of &lt;code&gt;v&lt;/code&gt;.&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;Let `locks_held(t)` be the set of locks held in any mode by thread `t`.
+Let `write_locks_held(t)` be the set of locks held in write mode by thread `t`.
+
+For each `v`, initialize `C(v)` to the set of all locks.  
+On each read of v by thread t,
+    set C(v) := C(v) ∩ locks_held(t);
+    if C(v) := { }, then issue a warning.
+On each write of v by thread t,
+    set C(v) := C(v) ∩ write_locks_held(t);
+    if C(v) = { }, then issue a warning.
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;22-limitation-to-produce-false-positive&#34;&gt;2.2 Limitation to produce false positive&lt;/h4&gt;
+&lt;p&gt;Every shared word can have a lock (don&amp;rsquo;t protect bytes or bits: can produce false positive)&lt;/p&gt;
+&lt;h3 id=&#34;3-implementing-eraser&#34;&gt;3. Implementing Eraser&lt;/h3&gt;
+&lt;p&gt;Eraser is implemented for the Digital Unix operating system on the Alpha processor, using the &lt;strong&gt;ATOM [Srivastava and Eustace 1994] binary modification system&lt;/strong&gt;. Eraser takes an unmodified program binary as input and adds instrumentation to produce a new binary that is functionally identical, but includes calls to the Eraser runtime to implement the Lockset algorithm.&lt;/p&gt;
+&lt;p&gt;To maintain &lt;code&gt;C(v)&lt;/code&gt;, Eraser instruments each load and store in the program. To maintain &lt;code&gt;lock_held(t)&lt;/code&gt; for each thread &lt;code&gt;t&lt;/code&gt;, Eraser instruments each call to acquire or release a lock, as well as the stubs that manage thread initialization and finalization. To initialize &lt;code&gt;C(v)&lt;/code&gt; for dynamically allocated data, Eraser instruments each call to the storage allocator.&lt;/p&gt;
+&lt;p&gt;Eraser treats each 32-bit word in the heap or global data as a possible shared variable, since on our platform a 32-bit word is the smallest memory-coherent unit. Eraser does not instrument loads and stores whose address mode is indirect off the stack pointer, since these are assumed to be stack references, and shared variables are assumed to be in global locations or in the heap.&lt;/p&gt;
+&lt;p&gt;When a race is reported, Eraser indicates the file and line number at which it was discovered and a backtrace listing of all active stack frames.&lt;/p&gt;
+&lt;h4 id=&#34;31-representing-the-candidate-lock-sets&#34;&gt;3.1 Representing the Candidate Lock Sets&lt;/h4&gt;
+&lt;p&gt;A naive implementation of lock sets would store a list of candidate locks for each memory location, potentially consuming many times the allocated memory of the program. We can avoid this expense by exploiting the fortunate fact that the number of distinct sets of locks observed in practice is quite small. In fact, we have never observed more than 10,000 distinct sets of locks occurring in any execution of the Lockset monitoring algorithm. Consequently, we represent each set of locks by a small integer, a &lt;em&gt;lockset index&lt;/em&gt; into a table whose entries canonically represent the set of locks as sorted vectors of lock addresses. The entries in the table are never deallocated or modified, so each lockset index remains valid for the lifetime of the program.&lt;/p&gt;
+&lt;p&gt;For every 32-bit word in the data segment and heap, there is a corresponding shadow word that is used to contain a 30-bit lockset index and a 2-bit state condition. (common techniques to maintain dynamic type information for set of untyped byte)&lt;/p&gt;
+&lt;p&gt;All the standard memory allocation routines are instrumented to allocate and initialize a shadow word for each word allocated by the program. When a thread accesses a memory location, Eraser finds the shadow word by adding a fixed displacement to the location’s address.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://yuhaolu.github.io/images/Eraser/Eraser_shadow_memory.png&#34; alt=&#34;static&#34;&gt;&lt;/p&gt;
+&lt;p&gt;What does atom have to do?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;instrument lock/unlock
+&lt;ul&gt;
+&lt;li&gt;add/remove lock from current lockset&lt;/li&gt;
+&lt;li&gt;has to know if read/write lock&lt;/li&gt;
+&lt;li&gt;has to know which parameter is the lock&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;allocation: initialize shadow memory (need to do data segment at startup)&lt;/li&gt;
+&lt;li&gt;insert a call to eraser on every load and store (access to shared variable)
+&lt;ul&gt;
+&lt;li&gt;update lockset and state transitions in the shadow word&lt;/li&gt;
+&lt;li&gt;report warning if lockset is empty&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;calls malloc: what happens:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;allocate shadow memory as big as allocation&lt;/li&gt;
+&lt;li&gt;puts it in the virgin state&lt;/li&gt;
+&lt;li&gt;sets the thread id to the current thread (calls thread package)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;32-performance&#34;&gt;3.2 Performance&lt;/h4&gt;
+&lt;p&gt;Performance was not a major goal in our implementation of Eraser and consequently there are many opportunities for optimization. Applications typically slow down by a factor of 10 to 30 while using Eraser.&lt;/p&gt;
+&lt;p&gt;We estimate that half of the slowdown in the current implementation is due to the overhead of making a procedure call at every load and store instruction. There are many opportunities for using static analysis to reduce the overhead of the monitoring code; but we have not explored them.&lt;/p&gt;
+&lt;h4 id=&#34;33-program-annotations-to-suppress-false-alarming&#34;&gt;3.3 Program Annotations to suppress false alarming&lt;/h4&gt;
+&lt;p&gt;Add in annotation to allow users of Eraser to eliminate the false reports:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Memory Reuse: that eraser doesn&amp;rsquo;t know of.  Eraser instruments all of the standard C, C11, and Unix memory allocation routines. However, many programs implement free lists or private allocators, and Eraser has no way of knowing that a privately recycled piece of memory is protected by a new set of locks.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;EraserReuse(address, size)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;which instructs Eraser to reset the shadow memory corresponding to the indicated memory range to the &lt;code&gt;Virgin&lt;/code&gt; state.&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Private Locks: that Erase doesn&amp;rsquo;t know of.
+The existence of private lock implementations can be communicated by annotating them with&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;EraserReadLock(lock)
+EraserReadUnlock(lock)
+EraserWriteLock(lock)
+EraserWriteUnlock(lock)
+&lt;/code&gt;&lt;/pre&gt;&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Benign Races: that doesn&amp;rsquo;t affect the correctness of the program&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;EraserIgnoreOn( )
+EraserIgnoreOff( )
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&#34;34-race-detection-in-an-os-kernel&#34;&gt;3.4 Race Detection in an OS Kernel&lt;/h4&gt;
+&lt;p&gt;SPIN (like many operating systems) often raises the processor interrupt level to provide mutual exclusion to shared data structures accessed by device drivers and other interrupt-level code. In most systems, raising the interrupt level to n ensures that only interrupts of priority greater than n will be serviced until the interrupt level is lowered. Raising and then restoring the interrupt level can be used instead of a lock, as follows:&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;level := SetInterruptLevel(n);
+(p Manipulate data p)
+RestoreInterruptLevel(level);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;However, unlike locks, a particular interrupt level inclusively protects all data protected by lower interrupt levels. We have incorporated this difference into Eraser by assigning a lock to each individual interrupt level. When the kernel sets the interrupt level to n, Eraser treats this operation as if the first n interrupt locks had all been acquired.&lt;/p&gt;
+&lt;p&gt;Operating systems make greater use of post/wait style synchronization. The most common example is the use of semaphores to synchronize execution between a thread and an I/O device driver.&lt;/p&gt;
+&lt;p&gt;Problem:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A network driver thread receives incoming packets from the network.&lt;/li&gt;
+&lt;li&gt;A processing thread processes the packets when available.&lt;/li&gt;
+&lt;li&gt;Synchronization needed to ensure the processing thread does not try to process before data is ready.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A binary semaphore is used to synchronize the two threads:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Network driver (producer) signals (V operation) when a packet arrives.&lt;/li&gt;
+&lt;li&gt;Processing thread (consumer) waits (P operation) until data is available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Semaphores use two fundamental operations:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;P (Proberen) – Wait / Down / Decrement (sem_wait())
+&lt;ul&gt;
+&lt;li&gt;If the semaphore value &amp;gt; 0, decrement and proceed.&lt;/li&gt;
+&lt;li&gt;If the semaphore value == 0, block until available.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;V (Verhogen) – Signal / Up / Increment (sem_post())
+&lt;ul&gt;
+&lt;li&gt;Increments the semaphore value, unblocking any waiting threads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This can cause problems for Eraser if data are shared between the device driver and the thread. Because semaphores are not “owned” it is difficult for Eraser to infer which data they are being used to protect, leading it to issue false alarms. A locking protocol in which one thread acquires a lock and another thread releases it is going to be hard to debug.&lt;/p&gt;
+&lt;h3 id=&#34;4-takeaways&#34;&gt;4. Takeaways&lt;/h3&gt;
+&lt;p&gt;Eraser illustrates several recurring areas of tension in programming tools:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Static versus dynamic error checking&lt;/li&gt;
+&lt;li&gt;Checking an unsafe language (with potential false negatives) as opposed to using a language whose model of computation eliminates the potential for errors to occur.&lt;/li&gt;
+&lt;li&gt;Doing analysis/instrumentation at the assembly level (this is getting increasingly popular) as opposed to the source language level.&lt;/li&gt;
+&lt;/ul&gt;
+- https://yuhaolu.github.io/posts/cs/os_eraser/ - </description>
+        </item>
+    
+    
+    
+        <item>
         <title>Efficiency Tips for Engineers</title>
         <link>https://yuhaolu.github.io/posts/misc/efficiency_tips/</link>
         <pubDate>Sat, 20 Jul 2024 10:36:08 -0700</pubDate>

@@ -2,14 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://yuhaolu.github.io/categories/</loc>
+    <lastmod>2025-03-09T15:40:03-07:00</lastmod>
+  </url><url>
+    <loc>https://yuhaolu.github.io/posts/cs/os_eraser/</loc>
+    <lastmod>2025-03-09T15:40:03-07:00</lastmod>
+  </url><url>
+    <loc>https://yuhaolu.github.io/categories/operating-systems/</loc>
+    <lastmod>2025-03-09T15:40:03-07:00</lastmod>
+  </url><url>
+    <loc>https://yuhaolu.github.io/tags/os/</loc>
+    <lastmod>2025-03-09T15:40:03-07:00</lastmod>
+  </url><url>
     <loc>https://yuhaolu.github.io/posts/</loc>
+    <lastmod>2025-03-09T15:40:03-07:00</lastmod>
+  </url><url>
+    <loc>https://yuhaolu.github.io/tags/</loc>
     <lastmod>2025-03-09T15:40:03-07:00</lastmod>
   </url><url>
     <loc>https://yuhaolu.github.io/</loc>
     <lastmod>2025-03-09T15:40:03-07:00</lastmod>
-  </url><url>
-    <loc>https://yuhaolu.github.io/categories/</loc>
-    <lastmod>2024-07-20T10:36:08-07:00</lastmod>
   </url><url>
     <loc>https://yuhaolu.github.io/posts/misc/efficiency_tips/</loc>
     <lastmod>2024-07-20T10:36:08-07:00</lastmod>
@@ -21,9 +33,6 @@
     <lastmod>2024-07-20T10:36:08-07:00</lastmod>
   </url><url>
     <loc>https://yuhaolu.github.io/tags/productivity/</loc>
-    <lastmod>2024-07-20T10:36:08-07:00</lastmod>
-  </url><url>
-    <loc>https://yuhaolu.github.io/tags/</loc>
     <lastmod>2024-07-20T10:36:08-07:00</lastmod>
   </url><url>
     <loc>https://yuhaolu.github.io/tags/algorithm/</loc>

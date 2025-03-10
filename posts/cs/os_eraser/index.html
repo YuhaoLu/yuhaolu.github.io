@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html><head>
 <title>Eraser: A Dynamic Data Race Detector for Multithreaded Programs</title>
 
 
@@ -10,7 +10,7 @@
 <meta name="google-site-verification" content="">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <meta content="telephone=no" name="format-detection">
-<meta name="description" content="">
+<meta name="description" content="Eraser dynamically detect data races in a mutual exclusive locked based multithreaded programs. It uses a lockset algorithm and binary rewriting techiniques to monitor the shared-memory reference and verify consistent locking">
 <meta name="renderer" content="webkit">
 <meta name="theme-color" content="#ffffff">
 
@@ -423,7 +423,7 @@
                 menu
             </i>
         </button>
-        <a id="navTitle" class="navbar-brand" href="http://localhost:1313/">
+        <a id="navTitle" class="navbar-brand" href="https://yuhaolu.github.io/">
             Yuhao&#39;s Blog
         </a>
         
@@ -437,7 +437,7 @@
 </nav>
 <div class="single-column-header-container" id="pageHead"
      v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
-    <a href="http://localhost:1313/">
+    <a href="https://yuhaolu.github.io/">
         <div class="single-column-header-title">Yuhao&#39;s Blog</div>
         
 
@@ -459,15 +459,29 @@
                 <div class="post-title">
                     Eraser: A Dynamic Data Race Detector for Multithreaded Programs
                     
+                    <div class="post-subtitle">
+                        Eraser dynamically detect data races in a mutual exclusive locked based multithreaded programs. It uses a lockset algorithm and binary rewriting techiniques to monitor the shared-memory reference and verify consistent locking
+                    </div>
+                    
                     <div class="post-meta">
                         
                         <time itemprop="datePublished">
-                            2024-10-06 15:40
+                            2025-03-09 15:40
                         </time>
                         
 
                         
+                            <i class="material-icons" style="">folder</i>
+                                <a href="/categories/operating-systems">Operating Systems</a>
+                                &nbsp;
+                        
 
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/os">OS</a>
+                                &nbsp;
+                            
                         
                         
                     </div>
@@ -654,7 +668,33 @@ EraserIgnoreOff( )
 (p Manipulate data p)
 RestoreInterruptLevel(level);
 </code></pre><p>However, unlike locks, a particular interrupt level inclusively protects all data protected by lower interrupt levels. We have incorporated this difference into Eraser by assigning a lock to each individual interrupt level. When the kernel sets the interrupt level to n, Eraser treats this operation as if the first n interrupt locks had all been acquired.</p>
-<p>Operating systems make greater use of post/wait style synchronization. The most common example is the use of semaphores to synchronize execution between a thread and an I/O device driver. Upon receiving data, the device driver will perform some minimal processing and then use a V operation to signal a thread waiting on P operation, for example, to wake up a thread waiting for an I/O completion. This can cause problems for Eraser if data are shared between the device driver and the thread. Because semaphores are not “owned” it is difficult for Eraser to infer which data they are being used to protect, leading it to issue false alarms.</p>
+<p>Operating systems make greater use of post/wait style synchronization. The most common example is the use of semaphores to synchronize execution between a thread and an I/O device driver.</p>
+<p>Problem:</p>
+<ul>
+<li>A network driver thread receives incoming packets from the network.</li>
+<li>A processing thread processes the packets when available.</li>
+<li>Synchronization needed to ensure the processing thread does not try to process before data is ready.</li>
+</ul>
+<p>A binary semaphore is used to synchronize the two threads:</p>
+<ul>
+<li>Network driver (producer) signals (V operation) when a packet arrives.</li>
+<li>Processing thread (consumer) waits (P operation) until data is available.</li>
+</ul>
+<p>Semaphores use two fundamental operations:</p>
+<ul>
+<li>P (Proberen) – Wait / Down / Decrement (sem_wait())
+<ul>
+<li>If the semaphore value &gt; 0, decrement and proceed.</li>
+<li>If the semaphore value == 0, block until available.</li>
+</ul>
+</li>
+<li>V (Verhogen) – Signal / Up / Increment (sem_post())
+<ul>
+<li>Increments the semaphore value, unblocking any waiting threads.</li>
+</ul>
+</li>
+</ul>
+<p>This can cause problems for Eraser if data are shared between the device driver and the thread. Because semaphores are not “owned” it is difficult for Eraser to infer which data they are being used to protect, leading it to issue false alarms. A locking protocol in which one thread acquires a lock and another thread releases it is going to be hard to debug.</p>
 <h3 id="4-takeaways">4. Takeaways</h3>
 <p>Eraser illustrates several recurring areas of tension in programming tools:</p>
 <ul>
@@ -665,7 +705,7 @@ RestoreInterruptLevel(level);
 
                     
                     <HR width="100%" id="EOF">
-		    <p style="color:#777;">Last modified on 2024-10-06</p>
+		    <p style="color:#777;">Last modified on 2025-03-09</p>
                     
                 </div>
             </div>
@@ -680,8 +720,8 @@ RestoreInterruptLevel(level);
                 
                 
                 
-                <a class="older-posts" href="/posts/cs/rtos/">
-			Previous &gt;<br>Operating_systems_gt
+                <a class="older-posts" href="/posts/misc/efficiency_tips/">
+			Previous &gt;<br>Efficiency Tips for Engineers
                 </a>
                 
             </nav>
@@ -707,7 +747,7 @@ RestoreInterruptLevel(level);
                     </div>
             </div><div id="sideContainer" class="side-container">
     
-    <a class="a-block nav-head false" href="http://localhost:1313/">
+    <a class="a-block nav-head false" href="https://yuhaolu.github.io/">
     
         <div class="nav-title">
             Yuhao&#39;s Blog
@@ -781,7 +821,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 
 &copy;
 	
-	2024 Yuhao&#39;s Blog
+	2025 Yuhao&#39;s Blog
 	
 
     </div>
@@ -1120,7 +1160,7 @@ Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a>
 
 &copy;
 	
-	2024 Yuhao&#39;s Blog
+	2025 Yuhao&#39;s Blog
 	
 </div>
             </div>
